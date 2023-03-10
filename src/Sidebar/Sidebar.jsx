@@ -5,6 +5,7 @@ import LanguagesArea from "./LanguagesArea";
 import PinnedArea from "./PinnedArea";
 import TagsArea from "./TagsArea";
 import { useState } from "react";
+import MiniEditor from "../Editor/MiniEditor.jsx";
 import { Modal, Input, InputTag } from "@arco-design/web-react";
 
 
@@ -37,13 +38,14 @@ export default function Sidebar() {
                 okText='Submit'
                 cancelText='Cancel'
             >
-                <Input style={{ width: 350 }} allowClear placeholder='Please Enter something' />;
-                <TextArea placeholder='Please enter ...' style={{ minHeight: 64, width: 350 }} />
+                <Input style={{ width: "100%", marginBottom: "10px" }} allowClear placeholder='Enter The File Name' />
+                <TextArea placeholder='Enter The Description' style={{ minHeight: 64, width: "100%", marginBottom: "10px"  }} />
                 <InputTag
                     allowClear
-                    placeholder='Input and press Enter'
-                    style={{ width: 350 }}
+                    placeholder='Enter The Tags'
+                    style={{ width:  "100%" , marginBottom: "10px" }}
                 />
+                <MiniEditor />
             </Modal>
         </div>
     )

@@ -12,8 +12,10 @@
   "dependencies": {
     "@arco-design/web-react": "^2.45.2",
     "@tauri-apps/api": "^1.2.0",
+    "prismjs": "^1.29.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-simple-code-editor": "^0.13.1"
   },
   "devDependencies": {
     "@tauri-apps/cli": "^1.2.2",

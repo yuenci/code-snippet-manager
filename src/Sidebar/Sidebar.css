@@ -1,0 +1,27 @@
+.avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 20px;
+}
+
+.func__areas {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc(100% - 180px);
+}
+
+.languages__area {
+    flex: 1;
+}
+
+.pinned__area {
+    flex: 1;
+}
+
+.tags__area {
+    flex: 1;
+}

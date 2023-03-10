@@ -7,14 +7,15 @@ import TagsArea from "./TagsArea";
 import { useState } from "react";
 import MiniEditor from "../Editor/MiniEditor.jsx";
 import { Modal, Input, InputTag } from "@arco-design/web-react";
-
+import {getPublicGists} from "../Tools/octokitTools.js";
 
 export default function Sidebar() {
     const [visible, setVisible] = useState(false);
     const TextArea = Input.TextArea;
 
     function showModal() {
-        setVisible(true);
+        //setVisible(true);
+        getPublicGists();
     }
 
     return (

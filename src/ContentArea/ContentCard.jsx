@@ -1,12 +1,16 @@
 import "./ContentArea.css";
 import Tools from "../Tools/Tools.js";
+import PubSub from 'pubsub-js';
+
 
 export  default  function ContentCard(props){
     const {gist} = props;
     //console.log(gist)
     function  clickHandler() {
         Tools.getRawContent(gist.files[0].raw_url).then(data => {
-            console.log(data)
+            //console.log(data)
+            PubSub.publish('gistInfo', { message: gist });
+            PubSub.publish('codeValue', { message: data });
         })
     }
 

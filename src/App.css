@@ -12,7 +12,7 @@ body {
 }
 
 .sidebar {
-  width: 150px;
+  width: 200px;
   height: 100%;
   background-color: aqua;
   text-align: center;
@@ -28,7 +28,7 @@ body {
 
 
 .editor {
-  width: calc(100% - 400px);
+  width: calc(100% - 450px);
   height: 100%;
   /*background-color: yellow;*/
   background-color: white;

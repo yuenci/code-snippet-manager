@@ -1,3 +1,9 @@
-- [ ] Add editor
-- [ ] Add Pinned area
+- [X] Add editor
+- [X] Add Pinned area
 - [ ] Add Post Gist Method
+- [ ] Add Delete Gist Method
+- [ ] Add Update Gist Method
+- [ ] Add Star Gist Method, pinned is starred
+- [ ] Add Unstar Gist Method
+- [ ] How to deal with the tags?
+- [ ] Add Gist Search Method

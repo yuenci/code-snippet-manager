@@ -18,6 +18,7 @@ export  default  function  EditorTopBar ( )  {
         <div className="editor-top-bar">
             <div className="editor-top-title">
                 {gist ? gist.title: "Title"}
+                <IconInfoCircle className={"info-icon"} />
             </div>
             <div className="editor-top-desc">
                 {gist ? gist.description: "Description"}
@@ -34,7 +35,7 @@ export  default  function  EditorTopBar ( )  {
                 </Space>
             </div>
             <div>
-                <IconInfoCircle style={{marginRight :5, cursor: "pointer"}} />
+
                 {gist ? "Last updated at " + Tools.ISO8601ToDDMMYYYY(gist.updated_at) : "Tags"}
             </div>
         </div>

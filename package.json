@@ -13,8 +13,11 @@
     "@arco-design/web-react": "^2.45.2",
     "@octokit/core": "^4.2.0",
     "@tauri-apps/api": "^1.2.0",
+    "ace-builds": "^1.15.3",
     "prismjs": "^1.29.0",
+    "pubsub-js": "^1.9.4",
     "react": "^18.2.0",
+    "react-ace": "^10.1.0",
     "react-dom": "^18.2.0",
     "react-simple-code-editor": "^0.13.1"
   },

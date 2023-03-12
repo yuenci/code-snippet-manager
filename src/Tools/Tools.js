@@ -24,5 +24,27 @@ export  default  class Tools{
         }
         //console.log(clearData);
         StatusContainer.ClearAllGistsData = clearData;
+        return clearData;
+    }
+
+    static ISO8601ToDDMMYYYY(isoDate){
+        const date = new Date(isoDate);
+        const options = { year: 'numeric', month: 'short', day: 'numeric' };
+        return  new Intl.DateTimeFormat('en-GB', options).format(date);
+    }
+
+    static getRawContent(url){
+        return new Promise((resolve, reject) => {
+            fetch(url)
+                .then(response => response.text())
+                .then(data => {
+                    //console.log(data)
+                    resolve(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                    reject(error);
+                });
+        })
     }
 }

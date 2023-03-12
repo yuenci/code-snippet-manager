@@ -61,3 +61,16 @@ fetch("https://api.github.com/gists", {
 # GitHub gist API
 
 https://docs.github.com/en/rest/gists?apiVersion=2022-11-28
+
+
+# react-ace
+https://github.com/securingsincity/react-ace
+https://securingsincity.github.io/react-ace/
+```bash
+yarn add react-ace ace-builds
+```
+
+# PubSubJS
+```bash
+yarn add pubsub-js
+```

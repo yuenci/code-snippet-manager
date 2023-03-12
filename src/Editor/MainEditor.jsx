@@ -25,6 +25,7 @@ export  default  function MainEditor(){
     return(
         <AceEditor
             width="100%"
+            height="620px"
             placeholder="Placeholder Text"
             mode="javascript"
             theme="github"

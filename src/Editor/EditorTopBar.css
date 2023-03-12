@@ -1,0 +1,16 @@
+.editor-top-bar{
+    box-sizing: border-box;
+    padding: 7px;
+    border-bottom: 1px solid #e9ecef;
+    height: 150px;
+}
+
+.editor-top-title{
+    font-size: 20px;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.tags-container{
+    margin: 10px 0;
+}

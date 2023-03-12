@@ -1,5 +1,9 @@
 import {useEffect, useState} from "react";
 import PubSub from "pubsub-js";
+import "./EditorTopBar.css";
+import {Space, Tag} from "@arco-design/web-react";
+import Tools from "../Tools/Tools.js";
+import {IconInfoCircle} from "@arco-design/web-react/icon";
 
 export  default  function  EditorTopBar ( )  {
     const [gist, setGist] = useState(null);
@@ -11,16 +15,27 @@ export  default  function  EditorTopBar ( )  {
     }, []);
 
     return (
-        <div>
-            <div>
+        <div className="editor-top-bar">
+            <div className="editor-top-title">
                 {gist ? gist.title: "Title"}
             </div>
-            <div>
+            <div className="editor-top-desc">
                 {gist ? gist.description: "Description"}
             </div>
-            <div>Tags</div>
+            <div className="tags-container">
+                <Space>
+                    <Tag checkable color='green' defaultChecked closable>Awesome</Tag>
+                    <Tag checkable color='red' defaultChecked>
+                        Toutiao
+                    </Tag>
+                    <Tag checkable color='arcoblue' defaultChecked closable >
+                        Lark
+                    </Tag>
+                </Space>
+            </div>
             <div>
-                    {gist ? gist.created_at + "-" + gist.updated_at : "Tags"}
+                <IconInfoCircle style={{marginRight :5, cursor: "pointer"}} />
+                {gist ? "Last updated at " + Tools.ISO8601ToDDMMYYYY(gist.updated_at) : "Tags"}
             </div>
         </div>
     )

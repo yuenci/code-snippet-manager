@@ -33,3 +33,32 @@ body {
   /*background-color: yellow;*/
   background-color: white;
 }
+
+.sidebar__area__title__text{
+  margin-left: 5px;
+}
+
+.languages__area__con{
+  height: 100%;
+  overflow-y: auto;
+}
+
+
+
+.scrollbar-4px::-webkit-scrollbar {
+  width: 4px;
+}
+
+.scrollbar-4px::-webkit-scrollbar-track {
+  background: rgb(239, 239, 239);
+  border-radius: 2px;
+}
+
+.scrollbar-4px::-webkit-scrollbar-thumb {
+  background: #40a0ff49;
+  border-radius: 10px;
+}
+
+.scrollbar-4px::-webkit-scrollbar-thumb:hover {
+  background: #40a0ff;
+}

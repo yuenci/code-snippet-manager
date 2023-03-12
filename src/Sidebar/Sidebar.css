@@ -15,7 +15,7 @@
 }
 
 .languages__area {
-    flex: 1;
+    height: 30%;
 }
 
 .languages__area__title,
@@ -23,7 +23,7 @@
 .tags__area__title {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content:flex-start;
     align-items: center;
     box-sizing: border-box;
     padding: 0 15px;
@@ -31,11 +31,11 @@
 }
 
 .pinned__area {
-    flex: 1;
+    height: 30%;
 }
 
 .tags__area {
-    flex: 1;
+    height: 30%;
 }
 
 .tag-card{

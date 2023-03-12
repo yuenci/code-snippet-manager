@@ -27,14 +27,21 @@ export default function LanguagesArea() {
     return (
         <div className="languages__area" >
             <div className="languages__area__title">
-                <IconCode />
-                <div>Languages</div>
+                <IconCode className="sidebar__area__title__icon" />
+                <div className="sidebar__area__title__text">Languages</div>
             </div>
-            {languages &&
-                languages.map((language, index) => {
-                    return <TagCard key={index} text={language}/>
-                })
-            }
+            <div className="languages__area__con scrollbar-4px">
+                {languages &&
+                    languages.map((language, index) => {
+                        return <TagCard key={index} text={language}/>
+                    })
+                }
+                {languages &&
+                    languages.map((language, index) => {
+                        return <TagCard key={index} text={language}/>
+                    })
+                }
+            </div>
         </div>
     )
 }

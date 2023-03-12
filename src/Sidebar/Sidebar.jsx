@@ -7,15 +7,13 @@ import TagsArea from "./TagsArea";
 import { useState } from "react";
 import MiniEditor from "../Editor/MiniEditor.jsx";
 import { Modal, Input, InputTag } from "@arco-design/web-react";
-import {getPublicGists} from "../Tools/octokitTools.js";
 
 export default function Sidebar() {
     const [visible, setVisible] = useState(false);
     const TextArea = Input.TextArea;
 
     function showModal() {
-        //setVisible(true);
-        getPublicGists();
+        setVisible(true);
     }
 
     return (
@@ -40,11 +38,11 @@ export default function Sidebar() {
                 cancelText='Cancel'
             >
                 <Input style={{ width: "100%", marginBottom: "10px" }} allowClear placeholder='Enter The File Name' />
-                <TextArea placeholder='Enter The Description' style={{ minHeight: 64, width: "100%", marginBottom: "10px"  }} />
+                <TextArea placeholder='Enter The Description' style={{ minHeight: 64, width: "100%", marginBottom: "10px" }} />
                 <InputTag
                     allowClear
                     placeholder='Enter The Tags'
-                    style={{ width:  "100%" , marginBottom: "10px" }}
+                    style={{ width: "100%", marginBottom: "10px" }}
                 />
                 <MiniEditor />
             </Modal>

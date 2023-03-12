@@ -1,23 +1,23 @@
-# Tauri + React
+```bash
+yarn tauri dev
 
-This template should help get you started developing with Tauri and React in Vite.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
-
+yarn tauri build
+```
 
 # Arco
 
 https://arco.design/react/components/button
+
 ```bash
 yarn add @arco-design/web-react
 ```
+
 ```js
 import "@arco-design/web-react/dist/css/arco.css";
 ```
 
 # React-simple-code-editor
+
 https://github.com/react-simple-code-editor/react-simple-code-editor
 
 ```bash
@@ -29,17 +29,22 @@ yarn add prismjs
 ```
 
 # octokitTools/core
+
 for GitHub api authentication
 https://github.com/octokitTools/core.js#readme
+
 ```bash
 yarn add @octokitTools/core ❌
 ```
+
 使用下面的代替
+
 ```js
 import { Octokit } from "https://cdn.skypack.dev/@octokit/core"; //❌
 ```
 
 使用请求代替
+
 ```js
 let headers= {
         "Accept": "application/vnd.github+json",
@@ -54,4 +59,5 @@ fetch("https://api.github.com/gists", {
 ```
 
 # GitHub gist API
+
 https://docs.github.com/en/rest/gists?apiVersion=2022-11-28

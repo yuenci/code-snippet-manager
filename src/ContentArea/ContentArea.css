@@ -1,0 +1,16 @@
+.content-card{
+    background-color: #fff;
+    box-sizing: border-box;
+    padding: 2px 5px;
+    border-bottom: 1px solid #e9ecef;
+    cursor: pointer;
+}
+.content-card-title{
+    font-size: 16px;
+    color: #000;
+}
+
+.content-card-description{
+    font-size: 14px;
+    color: #000;
+}

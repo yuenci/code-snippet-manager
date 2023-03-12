@@ -1,6 +1,7 @@
 ```bash
 yarn tauri dev
-
+```
+```bash
 yarn tauri build
 ```
 

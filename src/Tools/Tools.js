@@ -1,4 +1,5 @@
 import StatusContainer from "./StatusContainer.js";
+import PubSub from "pubsub-js";
 export  default  class Tools{
     static clearGistsData(data){
         // only title ,id ; created_at; updated_at; description; filename; raw_url; language
@@ -12,6 +13,7 @@ export  default  class Tools{
                     raw_url: gist.files[key].raw_url,
                     language: gist.files[key].language
                 })
+                PubSub.publish('language', { message: gist.files[key].language });
             }
             clearData.push({
                 title: gist.description,

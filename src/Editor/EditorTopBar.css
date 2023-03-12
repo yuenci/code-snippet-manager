@@ -1,6 +1,6 @@
 .editor-top-bar{
     box-sizing: border-box;
-    padding: 7px;
+    padding: 0 7px 7px 7px;
     border-bottom: 1px solid #e9ecef;
     height: 150px;
 }

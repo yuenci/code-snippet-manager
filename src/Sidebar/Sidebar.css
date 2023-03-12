@@ -18,10 +18,31 @@
     flex: 1;
 }
 
+.languages__area__title,
+.pinned__area__title,
+.tags__area__title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 15px;
+    user-select: none;
+}
+
 .pinned__area {
     flex: 1;
 }
 
 .tags__area {
     flex: 1;
+}
+
+.tag-card{
+    text-align: left;
+    margin: 10px 5px;
+    background-color: #e9ecef;
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 12px;
 }

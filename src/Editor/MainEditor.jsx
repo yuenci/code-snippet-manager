@@ -8,30 +8,36 @@ export  default  function MainEditor(){
     const [value, setValue] = useState(`function onLoad(editor) {
   console.log("i've loaded");
 }`);
+    const  [height, setHeight] = useState(620);
+
     useEffect(() => {
         const subscription = PubSub.subscribe('codeValue', (msg, data) => {
             setValue(data.message)
         });
         return () => PubSub.unsubscribe(subscription);
     }, []);
-    function onChange(newValue) {
-        //console.log("change", newValue);
-    }
+    useEffect(() => {
+        function handleResize() {
+            setHeight(window.innerHeight - 150);
+        }
 
-    function onLoad() {
-        //editor.focus();
-        console.log("i've loaded");
-    }
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []); // 空数组表示仅在挂载和卸载时执行一次
+
     return(
         <AceEditor
             width="100%"
-            height="620px"
+            height={height +"px"}
             placeholder="Placeholder Text"
             mode="javascript"
             theme="github"
             name="blah2"
-            onLoad={onLoad}
-            onChange={onChange}
+            // onLoad={onLoad}
+            // onChange={onChange}
             fontSize={14}
             showPrintMargin={true}
             showGutter={true}

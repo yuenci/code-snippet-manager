@@ -2,7 +2,7 @@ import { Button } from "@arco-design/web-react";
 import "./Sidebar.css";
 // import StarArea from "./StarArea";
 import LanguagesArea from "./LanguagesArea";
-import PinnedArea from "./PinnedArea";
+import Starred from "./Starred.jsx";
 import TagsArea from "./TagsArea";
 import { useState } from "react";
 import MiniEditor from "../Editor/MiniEditor.jsx";
@@ -24,7 +24,7 @@ export default function Sidebar() {
             </div>
             <div className="func__areas">
                 <LanguagesArea />
-                <PinnedArea />
+                <Starred />
                 <TagsArea />
             </div>
             <Modal

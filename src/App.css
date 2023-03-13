@@ -3,6 +3,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
+  /*overflow-y: hidden;*/
 }
 
 .container {
@@ -34,12 +35,14 @@ body {
   background-color: white;
 }
 
-.sidebar__area__title__text{
-  margin-left: 5px;
-}
 
 .languages__area__con{
   height: 100%;
+  overflow-y: auto;
+}
+
+.sidebar__area__items__con{
+  height: calc(100% - 21px);
   overflow-y: auto;
 }
 

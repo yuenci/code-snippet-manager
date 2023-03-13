@@ -1,8 +1,9 @@
 import {useEffect, useState} from "react";
-import TagCard from "./TagCard.jsx";
 import {IconCode} from "@arco-design/web-react/icon";
+import SidebarArea from "./SideBarArea.jsx";
 
 export default function LanguagesArea() {
+
     const [languages, setLanguages] = useState([]);
 
     function addLanguage(language){
@@ -23,25 +24,10 @@ export default function LanguagesArea() {
         });
         return () => PubSub.unsubscribe(subscription);
     }, []);
-
     return (
-        <div className="languages__area" >
-            <div className="languages__area__title">
-                <IconCode className="sidebar__area__title__icon" />
-                <div className="sidebar__area__title__text">Languages</div>
-            </div>
-            <div className="languages__area__con scrollbar-4px">
-                {languages &&
-                    languages.map((language, index) => {
-                        return <TagCard key={index} text={language}/>
-                    })
-                }
-                {languages &&
-                    languages.map((language, index) => {
-                        return <TagCard key={index} text={language}/>
-                    })
-                }
-            </div>
-        </div>
+        <SidebarArea title={"Languages"}
+                     icon={<IconCode className="sidebar__area__title__icon" />}
+                     data={languages}
+        />
     )
 }

@@ -3,7 +3,7 @@ import "./Sidebar.css"
 import Tools from "../Tools/Tools.js";
 export default  function InfoModal(props){
     const {visible, setVisible,gist} = props;
-    console.log(gist)
+    //console.log(gist)
     return (
         <Modal
             title='Snippet Properties'

@@ -11,7 +11,6 @@
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     height: calc(100% - 180px);
 }
 
@@ -41,11 +40,12 @@
 
 .tag-card{
     text-align: left;
-    margin: 10px 5px;
+    margin: 5px 5px;
     background-color: #e9ecef;
     border-radius: 5px;
     padding: 5px;
     font-size: 12px;
+    cursor: pointer;
 }
 
 .info-item{
@@ -68,4 +68,38 @@
     object-fit: cover;
     margin-right: 5px;
     cursor: pointer;
+}
+.sidebar__area{
+    height: 33%;
+}
+
+.sidebar__area__title{
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-start;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0 15px;
+    user-select: none;
+    position: relative;
+    cursor:  pointer;
+}
+
+.sidebar__area__title__text{
+    margin-left: 5px;
+}
+.arrow-con{
+    position: absolute;
+    right: 15px;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 18px;
+    height: 18px;
+    line-height: 18px;
+    border-radius: 50%;
+
+}
+
+.arrow-con:hover{
+    background-color: #e9ecef;
 }

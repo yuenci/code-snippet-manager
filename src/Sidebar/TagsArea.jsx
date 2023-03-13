@@ -1,12 +1,12 @@
-import {IconTag} from "@arco-design/web-react/icon";
+import { IconTag} from "@arco-design/web-react/icon";
+import SidebarArea from "./SideBarArea.jsx";
 
 export default function TagsArea() {
+    let data = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j"];
     return (
-        <div className="tags__area" >
-            <div className={"tags__area__title"}>
-                <IconTag  className="sidebar__area__title__icon" />
-                <div className="sidebar__area__title__text" >TagsArea</div>
-            </div>
-        </div>
+        <SidebarArea title={"Tags"}
+                     icon={<IconTag className="sidebar__area__title__icon" />}
+                     data={data}
+        />
     )
 }

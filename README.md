@@ -77,6 +77,7 @@ yarn add pubsub-js
 ```
 
 # diff.js
+https://github.com/kpdecker/jsdiff
 ```bash
 yarn add diff
 ```

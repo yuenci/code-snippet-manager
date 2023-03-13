@@ -14,6 +14,7 @@
     "@octokit/core": "^4.2.0",
     "@tauri-apps/api": "^1.2.0",
     "ace-builds": "^1.15.3",
+    "diff": "^5.1.0",
     "prismjs": "^1.29.0",
     "pubsub-js": "^1.9.4",
     "react": "^18.2.0",

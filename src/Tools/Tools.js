@@ -72,4 +72,22 @@ export  default  class Tools{
                 });
         })
     }
+
+    static async getHistoryData(gist_id){
+        let gistData = await Gist.get({ type: Gist.type.getGist, gist_id: gist_id})
+        let historyData = gistData.history;
+
+        // Gist.get({ type: Gist.type.getGistHistory, gist_id: gist_id1, sha: sha1 })
+        // 使用并发请求全部的历史版本
+
+        let promises = [];
+        for (let i = 0; i < historyData.length; i++) {
+            let sha = historyData[i].version;
+            let promise = Gist.get({ type: Gist.type.getGistHistory, gist_id: gist_id, sha: sha })
+            promises.push(promise);
+        }
+        let res = await Promise.all(promises);
+        console.log(res)
+        return res;
+    };
 }

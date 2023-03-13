@@ -3,7 +3,6 @@ import Tools from "../Tools/Tools.js";
 import PubSub from 'pubsub-js';
 import {Dropdown, Menu} from "@arco-design/web-react";
 import {useEffect, useState} from "react";
-import Gist from "../Tools/gist.js";
 
 export  default  function ContentCard(props){
     const {gist,active, setActive} = props;
@@ -28,10 +27,15 @@ export  default  function ContentCard(props){
     }, [active]);
 
     function setHistoryHandler(){
-        Gist.get({ type: Gist.type.getGist, gist_id: gist.id }).then(data => {
+        /*if(history.length > 0) {
+            PubSub.publish('history', { message:history });
+            return;
+        }*/
+        Tools.getHistoryData(gist.id).then(data => {
             //console.log(data);
-            setHistory(data.history);
-        })
+            setHistory(data);
+            PubSub.publish('history', { message: data });
+        });
     }
 
     function  clickHandler() {
@@ -41,13 +45,6 @@ export  default  function ContentCard(props){
             PubSub.publish('codeValue', { message: data });
             setActive(gist.id)
         })
-
-        const oldData = { name: 'Tom', age: 20 };
-        const newData = { name: 'Jerry', age: 21 };
-
-        const difference = diff(oldData, newData);
-        console.log(difference)
-
     }
 
     return (

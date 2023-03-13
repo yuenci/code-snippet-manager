@@ -13,9 +13,9 @@
 - [X] show starred gist in editor
 - [X] star gist and unstar gist
 - [ ] write tags and description
-- [ ] read tags and description
-- [ ] show tags
-- [ ] show tags list
+- [X] read tags and description
+- [X] show tags
+- [X] show tags list
 - [ ] tags click to search
 - [ ] language click to search
 - [ ] share gist(url + image)S

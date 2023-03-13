@@ -66,3 +66,8 @@ body {
 .scrollbar-4px::-webkit-scrollbar-thumb:hover {
   background: #40a0ff;
 }
+
+.arco-dropdown-menu{
+  max-height: 270px !important;
+  width: 170px;
+}

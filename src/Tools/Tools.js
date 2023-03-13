@@ -193,4 +193,18 @@ export  default  class Tools{
         Gist.delete({ type: Gist.type.unStarGist, gist_id: gist_id }).then(()=> this.getStarredGists());
     }
 
+    static  getTags(gist){
+        if(!gist) return ;
+        let description = gist.description;
+        const regex = /#\w+/g;
+        return  description.match(regex);
+    }
+    static  getDesc(gist){
+        if(!gist ) return ;
+        let description = gist.description;
+        const regex = /^(.*?)\s+\[/;
+        const match = regex.exec(description);
+        return match[1];
+    }
+
 }

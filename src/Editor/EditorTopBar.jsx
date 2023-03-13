@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import "./EditorTopBar.css";
-import { Space, Tag} from "@arco-design/web-react";
 import Tools from "../Tools/Tools.js";
 import {IconHistory, IconInfoCircle, IconStar, IconStarFill} from "@arco-design/web-react/icon";
 import InfoModal from "../Sidebar/InfoModal.jsx";
 import HistoryDrawer from "./HistoryDrawer.jsx";
 import StatusContainer from "../Tools/StatusContainer.js";
+import TagsContainer from "./TagsContainer.jsx";
 
 export  default  function  EditorTopBar ( props)  {
     const {gist_id} = props;
@@ -47,6 +47,9 @@ export  default  function  EditorTopBar ( props)  {
         }
     }
 
+    let tags = Tools.getTags(gist);
+    let desc = Tools.getDesc(gist);
+
     return (
         <div>
             <div className="editor-top-bar">
@@ -62,22 +65,11 @@ export  default  function  EditorTopBar ( props)  {
                     </div>
 
                 </div>
-                <div className="editor-top-desc">
-                    {gist ? gist.description: "Description"}
-                </div>
+                <div className="editor-top-desc">{desc}</div>
                 <div className="tags-container">
-                    <Space>
-                        <Tag checkable color='green' defaultChecked closable>Awesome</Tag>
-                        <Tag checkable color='red' defaultChecked>
-                            Toutiao
-                        </Tag>
-                        <Tag checkable color='arcoblue' defaultChecked closable >
-                            Lark
-                        </Tag>
-                    </Space>
+                    <TagsContainer tags={tags}/>
                 </div>
                 <div>
-
                     {gist ? "Last updated at " + Tools.ISO8601ToDateTime(gist.updated_at) : "Tags"}
                 </div>
             </div>

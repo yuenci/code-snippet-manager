@@ -23,6 +23,8 @@ export  default  function MainEditor(){
             setHeight(window.innerHeight - 150);
         }
 
+        handleResize();
+
         window.addEventListener('resize', handleResize);
 
         return () => {

@@ -7,4 +7,4 @@
 - [ ] Add Unstar Gist Method
 - [ ] How to deal with the tags?
 - [ ] Add Gist Search Method
-- [ ] Snippet Info Modal
+- [X] Snippet Info Modal

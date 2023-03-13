@@ -5,9 +5,11 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import {useEffect, useState} from "react";
 import PubSub from "pubsub-js";
 export  default  function MainEditor(){
-    const [value, setValue] = useState(`function onLoad(editor) {
-  console.log("i've loaded");
-}`);
+//     const [value, setValue] = useState(`function onLoad(editor) {
+//   console.log("i've loaded");
+// }`);
+    const [value, setValue] = useState("");
+
     const  [height, setHeight] = useState(620);
 
     useEffect(() => {
@@ -32,7 +34,6 @@ export  default  function MainEditor(){
         <AceEditor
             width="100%"
             height={height +"px"}
-            placeholder="Placeholder Text"
             mode="javascript"
             theme="github"
             name="blah2"

@@ -12,6 +12,7 @@ export default function Sidebar() {
     useEffect(() => {
         getPublicGists().then(
             function (data){
+                console.log(data)
                 setClearGistsData(Tools.clearGistsData(data));
             }
         );

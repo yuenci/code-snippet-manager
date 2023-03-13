@@ -11,17 +11,21 @@ export  default  class Tools{
                 files.push({
                     filename: gist.files[key].filename,
                     raw_url: gist.files[key].raw_url,
-                    language: gist.files[key].language
+                    language: gist.files[key].language,
+                    size: gist.files[key].size
                 })
                 PubSub.publish('language', { message: gist.files[key].language });
             }
             clearData.push({
-                title: gist.description,
+                //title: gist.description,
+                title: files[0].filename,
                 created_at: gist.created_at,
                 updated_at: gist.updated_at,
                 description: gist.description,
                 files: files,
-                id: gist.id
+                id: gist.id,
+                html_url: gist.html_url,
+                owner: gist.owner
             })
         }
         //console.log(clearData);
@@ -33,6 +37,13 @@ export  default  class Tools{
         const date = new Date(isoDate);
         const options = { year: 'numeric', month: 'short', day: 'numeric' };
         return  new Intl.DateTimeFormat('en-GB', options).format(date);
+    }
+
+    static ISO8601ToDateTime(isoDate){
+        // ISO8601 To YYYY-MM-DD HH:MM:SS
+        let res = isoDate.replace('T', ' ');
+        res = res.replace('Z', ' ');
+        return res;
     }
 
     static getRawContent(url){

@@ -75,3 +75,8 @@ yarn add react-ace ace-builds
 ```bash
 yarn add pubsub-js
 ```
+
+# diff.js
+```bash
+yarn add diff
+```

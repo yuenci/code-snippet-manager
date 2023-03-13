@@ -1,3 +1,10 @@
 .ace_scrollbar {
     width: 6px !important;
 }
+
+.codeMarker  {
+    background: #ffff99;
+    position: absolute;
+    z-index: 20;
+}
+

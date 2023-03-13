@@ -5,6 +5,7 @@ import Gist from "./gist.js";
 export  default  class Tools{
     static async getClearingData(){
         let res = await Gist.get({ type: Gist.type.getGists })
+        //console.log(res)
         return this.clearGistsData(res);
     }
     static clearGistsData(data){

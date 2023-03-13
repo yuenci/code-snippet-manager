@@ -14,7 +14,7 @@ export  default  function MainEditor(){
 
     useEffect(() => {
         const subscription = PubSub.subscribe('codeValue', (msg, data) => {
-            console.log(data.message)
+            //console.log(data.message)
             setValue(data.message)
         });
         return () => PubSub.unsubscribe(subscription);
@@ -39,7 +39,7 @@ export  default  function MainEditor(){
             height={height +"px"}
             mode="javascript"
             theme="github"
-            name="blah2"
+            name="blah1"
             // onLoad={onLoad}
             // onChange={onChange}
             fontSize={14}

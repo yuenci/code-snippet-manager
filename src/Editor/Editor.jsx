@@ -1,7 +1,7 @@
 
 import "./Editor.css";
-import MainEditor from "./MainEditor.jsx";
 import EditorTopBar from "./EditorTopBar.jsx";
+import DiffEditor from "./DiffEditor.jsx";
 
 export default function Sidebar() {
 
@@ -9,7 +9,8 @@ export default function Sidebar() {
     return (
         <div className="editor" >
             <EditorTopBar/>
-            <MainEditor/>
+            {/*<MainEditor/>*/}
+            <DiffEditor/>
         </div>
     )
 }

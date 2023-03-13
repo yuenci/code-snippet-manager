@@ -41,11 +41,12 @@
 }
 
 .search-bar{
-    width: 288px !important;
+    width: calc(100% - 32px)!important; ;
 }
 
 .content_top_area_con{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    width: 100%;
 }

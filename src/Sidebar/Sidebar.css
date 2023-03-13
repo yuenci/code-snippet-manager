@@ -1,17 +1,17 @@
 .avatar {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
     object-fit: cover;
-    margin-top: 15px;
-    margin-bottom: 5px;
+    cursor: pointer;
+}
+.sidebar-top{
+    height: 150px;
+    text-align: left;
 }
 
 .func__areas {
     margin-top: 20px;
     display: flex;
     flex-direction: column;
-    height: calc(100% - 180px);
+    height: calc(100% - 110px);
 }
 
 .languages__area {
@@ -46,6 +46,7 @@
     padding: 5px;
     font-size: 12px;
     cursor: pointer;
+    color: black;
 }
 
 .info-item{
@@ -102,4 +103,25 @@
 
 .arrow-con:hover{
     background-color: #e9ecef;
+}
+
+.Sidebar-top-con{
+    box-sizing: border-box;
+    padding: 15px;
+}
+.Sidebar-top-avatar{
+    margin-bottom: 15px;
+}
+
+.Sidebar-top-new-snippet{
+    cursor: pointer;
+    margin: 15px 0;
+}
+
+.Sidebar-top-new-snippet span{
+    margin: 10px 10px;
+}
+
+.arco-btn-text:not(.arco-btn-disabled):not(.arco-btn-loading):hover{
+    background-color: transparent!important;
 }

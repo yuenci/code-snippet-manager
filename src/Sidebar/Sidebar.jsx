@@ -1,4 +1,3 @@
-import { Button } from "@arco-design/web-react";
 import "./Sidebar.css";
 // import StarArea from "./StarArea";
 import LanguagesArea from "./LanguagesArea";
@@ -7,6 +6,7 @@ import TagsArea from "./TagsArea";
 import { useState } from "react";
 import MiniEditor from "../Editor/MiniEditor.jsx";
 import { Modal, Input, InputTag } from "@arco-design/web-react";
+import SidebarTopArea from "./SidebarTopArea.jsx";
 
 export default function Sidebar() {
     const [visible, setVisible] = useState(false);
@@ -18,9 +18,8 @@ export default function Sidebar() {
 
     return (
         <div className="sidebar">
-            <div>
-                <img src="https://utoolsfigurebed.oss-cn-hangzhou.aliyuncs.com/1621259076791.png" className="avatar" alt="avatar" />
-                <Button type="primary" onClick={showModal}>New Snippet</Button>
+            <div className="sidebar-top">
+                <SidebarTopArea showModal={showModal} />
             </div>
             <div className="func__areas">
                 <LanguagesArea />

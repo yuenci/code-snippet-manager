@@ -3,7 +3,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   font-family: 'Roboto', sans-serif;
-  /*overflow-y: hidden;*/
+  overflow-y: hidden;
 }
 
 .container {
@@ -15,9 +15,10 @@ body {
 .sidebar {
   width: 200px;
   height: 100%;
-  background-color: aqua;
+  background-color: #17171A;
   text-align: center;
   user-select: none;
+  color: white;
 }
 
 .content__area {

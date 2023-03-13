@@ -21,7 +21,20 @@
     font-size: 20px;
     color: #3491fa !important;
     cursor: pointer;
+    margin-left: 5px;
+}
+.star-icon{
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+    color: #57606a !important;
+}
 
+.star-icon-filled{
+    font-size: 20px;
+    cursor: pointer;
+    margin-left: 5px;
+    color:#eac54f !important;
 }
 
 .tags-container{

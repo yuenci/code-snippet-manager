@@ -1,19 +1,22 @@
 import {useEffect, useState} from "react";
 import ContentCard from "./ContentCard.jsx";
-// import StatusContainer from "../Tools/StatusContainer.js";
 import Tools from "../Tools/Tools.js";
 import "./ContentArea.css";
 import ContentTopArea from "./ContentTopArea.jsx";
-import Gist from "../Tools/gist.js";
+import PubSub from "pubsub-js";
 
 export default function ContentArea() {
     const [clearGistsData, setClearGistsData] = useState([]);
     const [active, setActive] = useState(false);
 
     useEffect(() => {
-        Gist.get({ type: Gist.type.getGists }).then(data=>{
-            console.log(data)
-            setClearGistsData(Tools.clearGistsData(data));
+        Tools.getClearingData().then(data=>{
+            setClearGistsData(data);
+            setActive(data[0].id);
+            PubSub.publish('gistInfo', { message: data[0] });
+            Tools.getRawContent(data[0].files[0].raw_url).then(data => {
+                PubSub.publish('codeValue', { message: data });
+            })
         })
     }   , []);
 

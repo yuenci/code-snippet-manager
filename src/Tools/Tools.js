@@ -1,6 +1,12 @@
 import StatusContainer from "./StatusContainer.js";
 import PubSub from "pubsub-js";
+import Gist from "./gist.js";
+
 export  default  class Tools{
+    static async getClearingData(){
+        let res = await Gist.get({ type: Gist.type.getGists })
+        return this.clearGistsData(res);
+    }
     static clearGistsData(data){
         // only title ,id ; created_at; updated_at; description; filename; raw_url; language
         let clearData = [];
@@ -28,10 +34,14 @@ export  default  class Tools{
                 owner: gist.owner
             })
         }
+        // sort by updated_at , return a new array
+        let sortedData = clearData.sort((a, b) => {
+            return new Date(b.updated_at) - new Date(a.updated_at);
+        });
 
         //console.log(clearData);
-        StatusContainer.ClearAllGistsData = clearData;
-        return clearData;
+        StatusContainer.ClearAllGistsData = sortedData;
+        return sortedData;
     }
 
     static ISO8601ToDDMMYYYY(isoDate){

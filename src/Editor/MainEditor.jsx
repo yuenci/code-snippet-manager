@@ -14,6 +14,7 @@ export  default  function MainEditor(){
 
     useEffect(() => {
         const subscription = PubSub.subscribe('codeValue', (msg, data) => {
+            console.log(data.message)
             setValue(data.message)
         });
         return () => PubSub.unsubscribe(subscription);

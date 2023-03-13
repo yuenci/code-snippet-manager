@@ -66,7 +66,7 @@ export default class Gist {
         };
 
 
-        console.log(url, options);
+        //console.log(url, options);
 
         return new Promise((resolve, reject) => {
             fetch(url, options)

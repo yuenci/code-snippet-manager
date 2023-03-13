@@ -28,6 +28,7 @@ export  default  class Tools{
                 owner: gist.owner
             })
         }
+
         //console.log(clearData);
         StatusContainer.ClearAllGistsData = clearData;
         return clearData;

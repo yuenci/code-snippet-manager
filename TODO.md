@@ -1,11 +1,11 @@
 - [X]  Add editor
 - [X]  Add Pinned area
-- [ ] Add Post Gist Method
-- [ ] Add Delete Gist Method
-- [ ] Add Update Gist Method
-- [ ] Add Star Gist Method, pinned is starred
-- [ ] Add Unstar Gist Method
+- [x] Add Post Gist Method
+- [x] Add Delete Gist Method
+- [x] Add Update Gist Method
+- [x] Add Star Gist Method, pinned is starred
+- [x] Add Unstar Gist Method
 - [ ] How to deal with the tags?
 - [ ] Add Gist Search Method
 - [X] Snippet Info Modal
-- [ ] Use Gpt3 to generate Title / Filename / Description
+- [ ] Use Gpt3 to generate Title / Filename / Description-

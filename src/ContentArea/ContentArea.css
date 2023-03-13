@@ -2,9 +2,17 @@
     background-color: #fff;
     box-sizing: border-box;
     padding: 7px ;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid #dee2e6;
     cursor: pointer;
+    transition: 0.2s;
 }
+.content-card:hover{
+    background-color: #f2f2f2;
+}
+.content-card-active{
+    background-color: #f2f2f2;
+}
+
 .content-card-title{
     font-size: 16px;
     color: #000;

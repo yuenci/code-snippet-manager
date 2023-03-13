@@ -8,4 +8,5 @@
 - [ ] How to deal with the tags?
 - [ ] Add Gist Search Method
 - [X] Snippet Info Modal
-- [ ] Use Gpt3 to generate Title / Filename / Description-
+- [ ] Use Gpt3 to generate Title / Filename / Description
+- [ ] TimeZone Support

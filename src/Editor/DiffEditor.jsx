@@ -5,8 +5,14 @@ import "ace-builds/src-noconflict/ext-language_tools";
 import { useEffect, useState} from "react";
 //import PubSub from "pubsub-js";
 import "./Editor.css"
-export  default  function DiffEditor(){
-    const [value, setValue] = useState(["Test code differences111111", "Test code difference"]);
+import PubSub from "pubsub-js";
+export  default  function DiffEditor(props){
+    let content = props.content;
+    if (!content) content = ["111","2222"];
+
+    //console.log("render diff editor", content)
+
+    const [value, setValue] = useState(content);
 
     const  [height, setHeight] = useState(getHeight());
 
@@ -32,9 +38,14 @@ export  default  function DiffEditor(){
     useEffect(() => {
 
         window.addEventListener('resize', setTimer);
+        const subscription = PubSub.subscribe('updateDiffEditor', (msg, data) => {
+            //console.log(data.message);
+            setValue(data.message);
+        });
 
         return () => {
             window.removeEventListener('resize', setTimer);
+            PubSub.unsubscribe(subscription);
         };
     }, []); // 空数组表示仅在挂载和卸载时执行一次
 

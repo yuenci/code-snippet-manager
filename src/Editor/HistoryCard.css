@@ -1,0 +1,53 @@
+.arco-drawer-content{
+    padding: 0 !important;
+}
+
+
+
+.history-card{
+    display: flex;
+    flex-direction: row;
+    width: 332px;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.history-card-avatar-img{
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    margin-right: 8px;
+    margin-top: 3px;
+}
+
+
+.history-card-upper{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: calc(300px - 40px);
+}
+.history-card-owner-name{
+    font-weight: 600;
+}
+.history-card-icon-con{
+    width: 25px;
+    height: 25px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.history-card-icon-con:hover{
+    background-color: #f1f3f5;
+    transition: 0.2s;
+}
+
+.history-card-icon{
+    width: 18px !important;
+    height: 18px !important;
+    color:#868e96 !important;
+}

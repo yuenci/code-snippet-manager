@@ -1,20 +1,22 @@
 import {Drawer} from "@arco-design/web-react";
 import {useEffect, useState} from "react";
+import HistoryCard from "./HistoryCard.jsx";
 
 export  default  function HistoryDrawer(props) {
-    const {showDrawer, setShowDrawer,gist} = props;
+    const {showDrawer, setShowDrawer} = props;
     const [history, setHistory] = useState([]);
 
     useEffect(() => {
         const subscription = PubSub.subscribe('history', (msg, data) => {
             let historyData = data.message;
+            //console.log(historyData)
             setHistory(historyData)
-            for (let i = 0; i < historyData.length; i++) {
+            /*for (let i = 0; i < historyData.length; i++) {
                 let files = historyData[i].files;
                 let keys = Object.keys(files);
-                //console.log(files[keys[0]])
-                //console.log(files[keys[0]].content)
-            }
+                console.log(files[keys[0]])
+                console.log(files[keys[0]].content)
+            }*/
 
         });
         return () => PubSub.unsubscribe(subscription);
@@ -35,9 +37,11 @@ export  default  function HistoryDrawer(props) {
             }}
             cancelText="Close"
         >
-            <div>Here is an example text.</div>
-
-            <div>Here is an example text.</div>
+            {history.length >0 &&
+                history.map((item, index) => {
+                   return  <HistoryCard key={index} history={item} setShowDrawer={setShowDrawer} />
+                })
+            }
         </Drawer>
     )
 }

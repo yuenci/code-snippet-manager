@@ -3,11 +3,12 @@ import Tools from "../Tools/Tools.js";
 import PubSub from 'pubsub-js';
 import {Dropdown, Menu} from "@arco-design/web-react";
 import {useEffect, useState} from "react";
+import StatusContainer from "../Tools/StatusContainer.js";
 
 export  default  function ContentCard(props){
     const {gist,active, setActive} = props;
     const [cardStyle, setCardStyle] = useState("content-card");
-    const [history, setHistory] = useState([]);
+    //const [history, setHistory] = useState([]);
     const  dropList   =  (
         <Menu>
             <Menu.Item key='1'>Haidian</Menu.Item>
@@ -33,7 +34,7 @@ export  default  function ContentCard(props){
         }*/
         Tools.getHistoryData(gist.id).then(data => {
             //console.log(data);
-            setHistory(data);
+            //setHistory(data);
             PubSub.publish('history', { message: data });
         });
     }
@@ -43,6 +44,10 @@ export  default  function ContentCard(props){
             //console.log(data)
             PubSub.publish('gistInfo', { message: gist });
             PubSub.publish('codeValue', { message: data });
+            PubSub.publish('switchEditor', {
+                type: "main",
+                content:StatusContainer.currentCodeContent,
+            });
             setActive(gist.id)
         })
     }

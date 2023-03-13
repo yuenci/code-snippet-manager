@@ -25,7 +25,7 @@ export  default  function  EditorTopBar ( )  {
     }
 
     function showDrawerHandler() {
-        console.log("showDrawerHandler")
+        //console.log("showDrawerHandler")
         setShowDrawer(true);
     }
 

@@ -4,11 +4,13 @@ import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
 import {useEffect, useState} from "react";
 import PubSub from "pubsub-js";
-export  default  function MainEditor(){
-//     const [value, setValue] = useState(`function onLoad(editor) {
-//   console.log("i've loaded");
-// }`);
-    const [value, setValue] = useState("");
+import StatusContainer from "../Tools/StatusContainer.js";
+export  default  function MainEditor(props){
+    let content = props.content;
+
+    if (!content) content = "";
+
+    const [value, setValue] = useState(content);
 
     const  [height, setHeight] = useState(620);
 
@@ -16,6 +18,7 @@ export  default  function MainEditor(){
         const subscription = PubSub.subscribe('codeValue', (msg, data) => {
             //console.log(data.message)
             setValue(data.message)
+            StatusContainer.currentCodeContent = data.message;
         });
         return () => PubSub.unsubscribe(subscription);
     }, []);

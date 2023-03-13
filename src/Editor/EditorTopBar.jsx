@@ -3,13 +3,15 @@ import PubSub from "pubsub-js";
 import "./EditorTopBar.css";
 import { Space, Tag} from "@arco-design/web-react";
 import Tools from "../Tools/Tools.js";
-import {IconInfoCircle, IconStar, IconStarFill} from "@arco-design/web-react/icon";
+import {IconHistory, IconInfoCircle, IconStar, IconStarFill} from "@arco-design/web-react/icon";
 import InfoModal from "../Sidebar/InfoModal.jsx";
+import HistoryDrawer from "./HistoryDrawer.jsx";
 
 export  default  function  EditorTopBar ( )  {
     const [gist, setGist] = useState(null);
     const [visible, setVisible] = useState(false);
     const [starred, setStarred] = useState(false);
+    const [showDrawer, setShowDrawer] = useState(false);
 
     useEffect(() => {
         const subscription = PubSub.subscribe('gistInfo', (msg, data) => {
@@ -22,6 +24,11 @@ export  default  function  EditorTopBar ( )  {
         setVisible(true);
     }
 
+    function showDrawerHandler() {
+        console.log("showDrawerHandler")
+        setShowDrawer(true);
+    }
+
     return (
         <div>
             <div className="editor-top-bar">
@@ -32,6 +39,7 @@ export  default  function  EditorTopBar ( )  {
                         ? <IconStarFill className={"star-icon-filled"} onClick={() => setStarred(false)}/>
                         :    <IconStar className={"star-icon"} onClick={() => setStarred(true)}/>
                     }
+                        <IconHistory  className={"history-icon"} onClick={ showDrawerHandler} />
                         <IconInfoCircle className={"info-icon"} onClick={showModal}/>
                     </div>
 
@@ -58,6 +66,7 @@ export  default  function  EditorTopBar ( )  {
             {
                 gist ? <InfoModal visible={visible} setVisible={setVisible} gist={gist}/> : null
             }
+            <HistoryDrawer showDrawer={showDrawer} setShowDrawer={setShowDrawer} gist={gist}/>
         </div>
 
 

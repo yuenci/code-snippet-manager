@@ -17,23 +17,33 @@
     align-items: center;
     justify-content: space-between;
 }
+
+.editor-top-title-right{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80px;
+}
 .info-icon{
     font-size: 20px;
     color: #3491fa !important;
     cursor: pointer;
-    margin-left: 5px;
 }
 .star-icon{
     font-size: 20px;
     cursor: pointer;
-    margin-left: 5px;
+    color: #57606a !important;
+}
+.history-icon{
+    font-size: 20px;
+    cursor: pointer;
     color: #57606a !important;
 }
 
 .star-icon-filled{
     font-size: 20px;
     cursor: pointer;
-    margin-left: 5px;
     color:#eac54f !important;
 }
 

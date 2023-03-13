@@ -38,8 +38,6 @@ export  default  function DiffEditor(){
         };
     }, []); // 空数组表示仅在挂载和卸载时执行一次
 
-    console.log("render")
-
     function onChange(newValue) {
         setValue(newValue)
     }

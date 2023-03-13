@@ -1,24 +1,31 @@
 import {useEffect, useState} from "react";
-import PubSub from "pubsub-js";
 import "./EditorTopBar.css";
 import { Space, Tag} from "@arco-design/web-react";
 import Tools from "../Tools/Tools.js";
 import {IconHistory, IconInfoCircle, IconStar, IconStarFill} from "@arco-design/web-react/icon";
 import InfoModal from "../Sidebar/InfoModal.jsx";
 import HistoryDrawer from "./HistoryDrawer.jsx";
+import StatusContainer from "../Tools/StatusContainer.js";
 
-export  default  function  EditorTopBar ( )  {
+export  default  function  EditorTopBar ( props)  {
+    const {gist_id} = props;
     const [gist, setGist] = useState(null);
     const [visible, setVisible] = useState(false);
     const [starred, setStarred] = useState(false);
     const [showDrawer, setShowDrawer] = useState(false);
 
+    function star(){
+        if(StatusContainer.starredGists.find((item) => item.id === gist_id)){
+            setStarred(true);
+        }else{
+            setStarred(false);
+        }
+    }
+
     useEffect(() => {
-        const subscription = PubSub.subscribe('gistInfo', (msg, data) => {
-            setGist(data.message)
-        });
-        return () => PubSub.unsubscribe(subscription);
-    }, []);
+        setGist(StatusContainer.ClearAllGistsData.find((item) => item.id === gist_id));
+        star();
+    }  , [gist_id]);
 
     function showModal() {
         setVisible(true);
@@ -29,6 +36,17 @@ export  default  function  EditorTopBar ( )  {
         setShowDrawer(true);
     }
 
+    function isStarred(){
+        setStarred(!starred);
+        if(starred === true){
+            //console.log("unstar")
+            Tools.unStarGist(gist_id)
+        }else{
+            //console.log("star")
+            Tools.starGist(gist_id)
+        }
+    }
+
     return (
         <div>
             <div className="editor-top-bar">
@@ -36,8 +54,8 @@ export  default  function  EditorTopBar ( )  {
                     {gist ? gist.title: "Title"}
                     <div className="editor-top-title-right">
                         {starred
-                        ? <IconStarFill className={"star-icon-filled"} onClick={() => setStarred(false)}/>
-                        :    <IconStar className={"star-icon"} onClick={() => setStarred(true)}/>
+                        ? <IconStarFill className={"star-icon-filled"} onClick={isStarred}/>
+                        :    <IconStar className={"star-icon"} onClick={isStarred}/>
                     }
                         <IconHistory  className={"history-icon"} onClick={ showDrawerHandler} />
                         <IconInfoCircle className={"info-icon"} onClick={showModal}/>

@@ -1,9 +1,22 @@
-import {Avatar, Button, Dropdown, Menu,Notification} from "@arco-design/web-react";
+import {Avatar, Button, Dropdown, Menu, Notification} from "@arco-design/web-react";
 import {IconDown, IconPlus} from "@arco-design/web-react/icon";
+import Tools from "../Tools/Tools.js";
 import "./Sidebar.css";
+import {useEffect, useState} from "react";
+import PubSub from "pubsub-js";
 
-export default  function SidebarTopArea(props) {
+export default function SidebarTopArea(props) {
     const {showModal} = props;
+    const [login, setLogin] = useState("");
+    const [avatar_url, setAvatar_url] = useState("");
+
+    useEffect(() => {
+        const subscription = PubSub.subscribe('nameAndAvatar', (msg, data) => {
+            setLogin(data.message.login);
+            setAvatar_url(data.message.avatar_url);
+        });
+        return () => PubSub.unsubscribe(subscription);
+    }, []);
 
     const dropList = (
         <Menu>
@@ -28,13 +41,13 @@ export default  function SidebarTopArea(props) {
                           position='br'
                 >
                     <Avatar size={32}>
-                        <img src="https://utoolsfigurebed.oss-cn-hangzhou.aliyuncs.com/1621259076791.png"
+                        <img src={avatar_url}
                              className="avatar" alt="avatar"
                         />
                     </Avatar>
                     <Button type='text'>
-                        Innis
-                        <IconDown />
+                        {login && Tools.capitalizeFirstLetter(login)}
+                        <IconDown/>
                     </Button>
                 </Dropdown>
             </div>
@@ -42,14 +55,14 @@ export default  function SidebarTopArea(props) {
                 onClick={showModal}
                 className="Sidebar-top-new-snippet"
             >
-                <Button shape='circle' type='primary' icon={<IconPlus />}  />
+                <Button shape='circle' type='primary' icon={<IconPlus/>}/>
                 <span>New Snippet</span>
             </div>
             <div
                 onClick={showNotification}
                 className="Sidebar-top-new-snippet"
             >
-                <Button shape='circle' type='primary' icon={<IconPlus />}  />
+                <Button shape='circle' type='primary' icon={<IconPlus/>}/>
                 <span>Sync Snippets</span>
             </div>
         </div>

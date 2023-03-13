@@ -10,6 +10,7 @@ import StatusContainer from "../Tools/StatusContainer.js";
 export default function Sidebar() {
     const [type, setType] = useState("main");
     const [content, setContent] = useState(null);
+    const [gist_id, setGistId] = useState(null);
 
     useEffect(() => {
         const subscription = PubSub.subscribe('switchEditor', (msg, data) => {
@@ -34,12 +35,19 @@ export default function Sidebar() {
         return () => PubSub.unsubscribe(subscription);
     }, []);
 
+    useEffect(() => {
+        const subscription1 = PubSub.subscribe('updateEditorData', (msg, data) => {
+            setGistId(data.gist_id);
+        });
+        return () => PubSub.unsubscribe(subscription1);
+    }, []);
+
     return (
         <div className="editor" >
-            <EditorTopBar/>
+            <EditorTopBar gist_id={gist_id}/>
             { type === "diff"
                 ? <DiffEditor content={content} />
-                : <MainEditor content={content} />
+                : <MainEditor content={content}  gist_id={gist_id} />
             }
         </div>
     )

@@ -6,10 +6,20 @@ export  default  class Tools{
     static async getClearingData(){
         let res = await Gist.get({ type: Gist.type.getGists })
         //console.log(res)
+        PubSub.publish('nameAndAvatar', { message: res[0].owner });
+        this.getOwnerInfo(res);
         return this.clearGistsData(res);
     }
     static clearGistsData(data){
         // only title ,id ; created_at; updated_at; description; filename; raw_url; language
+
+        let sortedData = this.clearingAndSortingData(data);
+        //console.log(clearData);
+        StatusContainer.ClearAllGistsData = sortedData;
+        return sortedData;
+    }
+
+    static  clearingAndSortingData(data){
         let clearData = [];
         for (let i = 0; i < data.length; i++) {
             let gist = data[i];
@@ -36,13 +46,31 @@ export  default  class Tools{
             })
         }
         // sort by updated_at , return a new array
-        let sortedData = clearData.sort((a, b) => {
+        return clearData.sort((a, b) => {
             return new Date(b.updated_at) - new Date(a.updated_at);
         });
+    }
 
-        //console.log(clearData);
-        StatusContainer.ClearAllGistsData = sortedData;
-        return sortedData;
+    static clearSingleGistData(data){
+        let files = [];
+        for (let key in data.files) {
+            files.push({
+                filename: data.files[key].filename,
+                raw_url: data.files[key].raw_url,
+                language: data.files[key].language,
+                size: data.files[key].size
+            })
+        }
+        return {
+            title: files[0].filename,
+            created_at: data.created_at,
+            updated_at: data.updated_at,
+            description: data.description,
+            files: files,
+            id: data.id,
+            html_url: data.html_url,
+            owner: data.owner
+        };
     }
 
     static ISO8601ToDDMMYYYY(isoDate){
@@ -112,4 +140,57 @@ export  default  class Tools{
     static  capitalizeFirstLetter(string) {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
+
+
+    static  getStarredGists(){
+        return new Promise((resolve, reject) => {
+            Gist.get({ type: Gist.type.getStarredGists })
+                .then(data => {
+                    if(StatusContainer.owner === null){
+                        this.getOwnerNameAndAvatar().then(ownerData => {
+                            StatusContainer.owner = ownerData;
+                            let newData = data.filter(item => {
+                                return item.owner.login === StatusContainer.owner.login;
+                            });
+                            //console.log(newData)
+                            StatusContainer.starredGists = newData;
+                            resolve(newData);
+                        })
+                    }
+                })
+                .catch(error => {
+                    console.error(error);
+                    reject(error);
+                });
+        });
+    }
+
+    static getOwnerInfo(data){
+        StatusContainer.owner = data[0].owner;
+    }
+
+    static getOwnerNameAndAvatar(){
+        return new Promise((resolve, reject) => {
+            fetch('https://api.github.com/users/yuenci')
+                .then(response => response.json())
+                .then(data => {
+                    //console.log(data)
+                    resolve(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                    reject(error);
+                });
+        });
+    }
+
+    static starGist(gist_id){
+        Gist.put({ type: Gist.type.starGist, gist_id: gist_id }).then(()=> this.getStarredGists());
+    }
+
+    static unStarGist(gist_id){
+        console.log(gist_id, 'unStarGist')
+        Gist.delete({ type: Gist.type.unStarGist, gist_id: gist_id }).then(()=> this.getStarredGists());
+    }
+
 }

@@ -40,16 +40,22 @@ export  default  function ContentCard(props){
     }
 
     function  clickHandler() {
-        Tools.getRawContent(gist.files[0].raw_url).then(data => {
-            //console.log(data)
-            PubSub.publish('gistInfo', { message: gist });
-            PubSub.publish('codeValue', { message: data });
-            PubSub.publish('switchEditor', {
-                type: "main",
-                content:StatusContainer.currentCodeContent,
-            });
-            setActive(gist.id)
-        })
+        // Tools.getRawContent(gist.files[0].raw_url).then(data => {
+        //     //console.log(data)
+        //     PubSub.publish('gistInfo', { message: gist });
+        //     PubSub.publish('codeValue', { message: data });
+        //     PubSub.publish('switchEditor', {
+        //         type: "main",
+        //         content:StatusContainer.currentCodeContent,
+        //     });
+        //     setActive(gist.id)
+        // })
+        setActive(gist.id)
+        PubSub.publish('updateEditorData', { gist_id: gist.id });
+        PubSub.publish('switchEditor', {
+            type: "main",
+            content:StatusContainer.currentCodeContent,
+        });
     }
 
     return (

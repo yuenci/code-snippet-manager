@@ -3,10 +3,12 @@ import TagCard from "./TagCard.jsx";
 import {useState} from "react";
 
 export default function SidebarArea(props) {
-    const {title, icon, data} = props;
+    const {title, icon, data,onExpand,type} = props;
     const [show, setShow] = useState(false);
+    const [itemData , setItemData] = useState(data);
 
     function  showHandler(){
+        if(!show) onExpand();
         setShow(!show);
     }
 
@@ -26,14 +28,15 @@ export default function SidebarArea(props) {
                 <div className="sidebar__area__items__con scrollbar-4px"
                     style={{display: show ? "block" : "none"}}
                 >
-                    {data &&
+                    {itemData && type !== "starred" &&
                         data.map((itemText, index) => {
                             return <TagCard key={index} text={itemText}/>
                         })
                     }
-                    {data &&
-                        data.map((itemText, index) => {
-                            return <TagCard key={index} text={itemText}/>
+
+                    {itemData && type === "starred" &&
+                        data.map((item, index) => {
+                            return <TagCard key={index} text={item.description} type="starred" data={item} />
                         })
                     }
                 </div>

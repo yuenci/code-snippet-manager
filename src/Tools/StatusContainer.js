@@ -5,4 +5,8 @@ export default  class StatusContainer {
     static currentCodeContent = '';
 
     static currentEditor = "main";
+
+    static owner = null;
+
+    static starredGists = [];
 }

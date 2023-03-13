@@ -24,10 +24,15 @@ export default function LanguagesArea() {
         });
         return () => PubSub.unsubscribe(subscription);
     }, []);
+    let hi = () => {
+        console.log("hi from language area")
+    };
     return (
         <SidebarArea title={"Languages"}
                      icon={<IconCode className="sidebar__area__title__icon" />}
                      data={languages}
+                     onExpand={hi}
+                        type={"languages"}
         />
     )
 }

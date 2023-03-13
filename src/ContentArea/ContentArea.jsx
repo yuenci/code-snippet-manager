@@ -13,10 +13,11 @@ export default function ContentArea() {
         Tools.getClearingData().then(data=>{
             setClearGistsData(data);
             setActive(data[0].id);
-            PubSub.publish('gistInfo', { message: data[0] });
-            Tools.getRawContent(data[0].files[0].raw_url).then(data => {
-                PubSub.publish('codeValue', { message: data });
-            })
+            // PubSub.publish('gistInfo', { message: data[0] });
+            // Tools.getRawContent(data[0].files[0].raw_url).then(data => {
+            //     PubSub.publish('codeValue', { message: data });
+            // })
+            PubSub.publish('updateEditorData', { gist_id: data[0].id });
         })
     }   , []);
 

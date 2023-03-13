@@ -52,7 +52,7 @@ export  default  function  EditorTopBar ( )  {
                 </div>
                 <div>
 
-                    {gist ? "Last updated at " + Tools.ISO8601ToDDMMYYYY(gist.updated_at) : "Tags"}
+                    {gist ? "Last updated at " + Tools.ISO8601ToDateTime(gist.updated_at) : "Tags"}
                 </div>
             </div>
             {

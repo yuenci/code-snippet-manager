@@ -17,6 +17,7 @@ export  default  function MainEditor(props){
     const  [height, setHeight] = useState(620);
 
     function handleResize() {
+        //console.log("resize")
         setHeight(window.innerHeight - 150);
     }
 
@@ -26,14 +27,22 @@ export  default  function MainEditor(props){
             setValue(data.message)
             StatusContainer.currentCodeContent = data.message;
 
-            handleResize();
-            window.addEventListener('resize', handleResize);
+
         });
         return () => {
             PubSub.unsubscribe(subscription);
+        }
+    }, []);
+
+    useEffect(() => {
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => {
             window.removeEventListener('resize', handleResize);
         }
     }, []);
+
+
     useEffect(() => {
         let currentGist = StatusContainer.ClearAllGistsData.find((item) => item.id === gist_id);
         if(currentGist === undefined) return;

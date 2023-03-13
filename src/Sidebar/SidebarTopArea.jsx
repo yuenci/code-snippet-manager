@@ -1,5 +1,5 @@
 import {Avatar, Button, Dropdown, Menu, Notification} from "@arco-design/web-react";
-import {IconDown, IconPlus} from "@arco-design/web-react/icon";
+import {IconDown, IconPlus, IconSync} from "@arco-design/web-react/icon";
 import Tools from "../Tools/Tools.js";
 import "./Sidebar.css";
 import {useEffect, useState} from "react";
@@ -27,6 +27,7 @@ export default function SidebarTopArea(props) {
     );
 
     function showNotification() {
+        PubSub.publish('updateContentsData', { message: 'updateEditorData' });
         Notification.success({
             title: 'Success',
             content: 'This is a success Notification!',
@@ -62,7 +63,7 @@ export default function SidebarTopArea(props) {
                 onClick={showNotification}
                 className="Sidebar-top-new-snippet"
             >
-                <Button shape='circle' type='primary' icon={<IconPlus/>}/>
+                <Button shape='circle' type='primary' icon={<IconSync />}/>
                 <span>Sync Snippets</span>
             </div>
         </div>

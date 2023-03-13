@@ -1,11 +1,12 @@
 import {useEffect, useState} from "react";
 import "./EditorTopBar.css";
 import Tools from "../Tools/Tools.js";
-import {IconHistory, IconInfoCircle, IconStar, IconStarFill} from "@arco-design/web-react/icon";
+import {IconHistory, IconInfoCircle, IconStar, IconStarFill, IconSync} from "@arco-design/web-react/icon";
 import InfoModal from "../Sidebar/InfoModal.jsx";
 import HistoryDrawer from "./HistoryDrawer.jsx";
 import StatusContainer from "../Tools/StatusContainer.js";
 import TagsContainer from "./TagsContainer.jsx";
+import PubSub from "pubsub-js";
 
 export  default  function  EditorTopBar ( props)  {
     const {gist_id} = props;
@@ -13,6 +14,7 @@ export  default  function  EditorTopBar ( props)  {
     const [visible, setVisible] = useState(false);
     const [starred, setStarred] = useState(false);
     const [showDrawer, setShowDrawer] = useState(false);
+    const [isSyncing, setIsSyncing] = useState(false);
 
     function star(){
         if(StatusContainer.starredGists.find((item) => item.id === gist_id)){
@@ -22,10 +24,33 @@ export  default  function  EditorTopBar ( props)  {
         }
     }
 
+    function randomStopSync(){
+        // random seconds from 0.5 - 2
+        let random = Math.random() * (2 - 0.5) + 0.5 ;
+
+        setTimeout(() => {
+            setIsSyncing(false)
+        }, random * 1000);
+    }
+
     useEffect(() => {
         setGist(StatusContainer.ClearAllGistsData.find((item) => item.id === gist_id));
         star();
     }  , [gist_id]);
+
+    useEffect(() => {
+        const subscription = PubSub.subscribe('syncing', (msg, data) => {
+            setIsSyncing(true)
+            randomStopSync();
+        });
+        const subscription1 = PubSub.subscribe('synced', (msg, data) => {
+            setIsSyncing(false)
+        });
+        return () => {
+            PubSub.unsubscribe(subscription)
+            PubSub.unsubscribe(subscription1)
+        };
+    }, []);
 
     function showModal() {
         setVisible(true);
@@ -56,6 +81,7 @@ export  default  function  EditorTopBar ( props)  {
                 <div className="editor-top-title">
                     {gist ? gist.title: "Title"}
                     <div className="editor-top-title-right">
+                        <IconSync spin={isSyncing} className={"sync-icon"}/>
                         {starred
                         ? <IconStarFill className={"star-icon-filled"} onClick={isStarred}/>
                         :    <IconStar className={"star-icon"} onClick={isStarred}/>

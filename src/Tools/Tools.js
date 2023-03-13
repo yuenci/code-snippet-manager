@@ -204,7 +204,31 @@ export  default  class Tools{
         let description = gist.description;
         const regex = /^(.*?)\s+\[/;
         const match = regex.exec(description);
+        if(!match) return description;
         return match[1];
     }
 
+    static createGist( fileName,description, content){
+        let data = {
+            "description": description,
+            "public": true,
+            "files": {
+                [fileName]: {
+                    "content": content
+                }
+            }
+        }
+        //console.log(data)
+        return new Promise((resolve, reject) => {
+            Gist.post({ type: Gist.type.createGist, content: data })
+                .then(data => {
+                    //console.log(data)
+                    resolve(data);
+                })
+                .catch(error => {
+                    console.error(error);
+                    reject(error);
+                });
+        });
+    }
 }

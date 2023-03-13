@@ -23,22 +23,21 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    width: 80px;
+    width: 110px;
 }
 .info-icon{
     font-size: 20px;
     color: #3491fa !important;
     cursor: pointer;
 }
-.star-icon{
+.sync-icon,.star-icon,.history-icon{
     font-size: 20px;
     cursor: pointer;
     color: #57606a !important;
 }
-.history-icon{
-    font-size: 20px;
-    cursor: pointer;
-    color: #57606a !important;
+
+.sync-icon{
+    cursor: default;
 }
 
 .star-icon-filled{

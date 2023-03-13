@@ -6,7 +6,8 @@ import 'prismjs/components/prism-javascript';
 import 'prismjs/themes/prism.css'; //Example style, you can use another
 import  './MiniEditor.css' ;
 
-export  default  function MiniEditor() {
+export  default  function MiniEditor(props) {
+    const {setContent} = props;
     const [code, setCode] = React.useState(
         `if (sad() === true) {\n    sad().stop();\n    beAwesome();\n}`
     );
@@ -14,6 +15,11 @@ export  default  function MiniEditor() {
         backgroundColor : "#f2f3f5",
         overflow: "auto",
         maxHeight: "400px",
+    }
+
+    function onChangeHandler(e){
+        //console.log(e.target.value)
+        setContent(e.target.value);
     }
 
 
@@ -28,6 +34,7 @@ export  default  function MiniEditor() {
                     fontFamily: '"Fira code", "Fira Mono", monospace',
                     fontSize: 12,
                 }}
+                onChange={onChangeHandler}
             />
         </div>
     );

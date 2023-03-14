@@ -54,6 +54,7 @@ export  default  function MainEditor(props){
         }
         editorRef.current.editor.container.addEventListener('keydown', handleKeyDown);
         return () => {
+            if(!editorRef.current) return;
             editorRef.current.editor.container.removeEventListener('keydown', handleKeyDown);
         }
     }, []);
@@ -69,7 +70,7 @@ export  default  function MainEditor(props){
         });
     }, [gist_id]);
 
-    function onChange(newValue) {
+    function onChange() {
         //console.log(editorRef.current.editor)
         PubSub.publish('syncing', { message: 'updateEditorData' });
     }

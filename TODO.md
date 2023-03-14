@@ -9,7 +9,7 @@
 - [ ] Add Gist Search Method
 - [X] Snippet Info Modal
 - [ ] Use Gpt3 to generate Title / Filename / Description
-- [ ] TimeZone Support
+- [ ] TimeZone Support(setting)
 - [X] show starred gist in editor
 - [X] star gist and unstar gist
 - [x] write tags and description
@@ -19,7 +19,7 @@
 - [ ] tags click to search
 - [ ] language click to search
 - [ ] share gist(url + image)S
-- [ ] copy gist to clipboard
+- [X] copy gist to clipboard
 - [ ] fix fist item can't be starred
 - [ ] show description modify modal
 - [ ] add run snippet 
@@ -27,3 +27,9 @@
 - [X] search desc and filename
 - [ ] search data content(put into settings)
 - [ ] connect to gpt
+- [ ] setting modal
+- [ ] help modal
+- [ ] use gist to store settings(write a function to create,update settings)
+- [ ] use gist to style(so that every can share their style)
+- [ ] add copy to code editor mimi ![img.png](image/img.png)
+- [ ] tag editor

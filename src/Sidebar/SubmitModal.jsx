@@ -1,4 +1,4 @@
-import {Input, InputTag, Modal,Notification} from "@arco-design/web-react";
+import {Input, InputTag, Modal, Notification, Spin} from "@arco-design/web-react";
 import MiniEditor from "../Editor/MiniEditor.jsx";
 import {useState} from "react";
 import Tools from "../Tools/Tools.js";
@@ -10,13 +10,15 @@ export default  function SubmitModal (props){
     const [fileName, setFileName] = useState("");
     const [description, setDescription] = useState("");
     const [tags, setTags] = useState([]);
-    const [content, setContent] = useState("");
+    const [content, setContent] = useState(`if (sad() === true) {\n    sad().stop();\n    beAwesome();\n}`);
+    const [loading, setLoading] = useState(false);
+
 
     function clearState(){
         setFileName("");
         setDescription("");
         setTags([]);
-        setContent("");
+        setContent(`if (sad() === true) {\n    sad().stop();\n    beAwesome();\n}`);
     }
 
     function showNotification(type) {
@@ -36,20 +38,20 @@ export default  function SubmitModal (props){
     }
 
     function useGPTFill(){
-        console.log("gpt")
-        let res ={
-            file_name : "1111",
-            desc:"222",
-            tagList :["aa","bb","cc"]
-        }
-        const {file_name, desc, tagList} = res;
-        setFileName(file_name)
-        setDescription(desc)
-        setTags(tagList)
+        //console.log(content)
+        setLoading(true);
+        Tools.chatGPT(content).then((res) => {
+            const {filename,description,tags} = res;
+            setFileName(filename);
+            setDescription(description);
+            setTags(tags);
+            setLoading(false);
+        });
     }
 
     function submitHandler(){
         //setVisible(false);
+
 
         let newTags = tags.map((tag) => {
             return  "#" + tag.trim() ;
@@ -73,36 +75,52 @@ export default  function SubmitModal (props){
         });
     }
 
+    function onCancelHandle(){
+        setVisible(false);
+        clearState();
+    }
+
     return(
-        <Modal
-            title='New Snippet'
-            visible={visible}
-            onOk={submitHandler}
-            onCancel={() => setVisible(false)}
-            autoFocus={false}
-            focusLock={true}
-            okText='Submit'
-            cancelText='Cancel'
-        >
-            <MiniEditor setContent={setContent}/>
-            <Input style={{ width: "100%", marginBottom: "10px",marginTop:"10px" }}
-                   allowClear placeholder='Enter The File Name'
-                   value={fileName}
-                   onChange={setFileName}
-            />
-            <TextArea placeholder='Enter The Description'
-                      style={{ minHeight: 64, width: "100%", marginBottom: "10px" }}
-                      onChange={setDescription}
-                      value={description}
-            />
-            <InputTag
-                allowClear
-                placeholder='Enter The Tags'
-                style={{ width: "100%"}}
-                onChange={setTags}
-                value={tags}
-            />
-            <img className={"gpt-img"}  alt="gpt logo" src="src/assets/ChatGPT_logo.svg.png" onClick={useGPTFill} />
-        </Modal>
+
+            <Modal
+                title='New Snippet'
+                visible={visible}
+                onOk={submitHandler}
+                onCancel={onCancelHandle}
+                autoFocus={false}
+                focusLock={true}
+                okText='Submit'
+                cancelText='Cancel'
+                closable={false}
+            >
+                <MiniEditor code={content} setCode={setContent}/>
+                <Input style={{ width: "100%", marginBottom: "10px",marginTop:"10px" }}
+                       allowClear placeholder='Enter The File Name'
+                       value={fileName}
+                       onChange={setFileName}
+                />
+                <TextArea placeholder='Enter The Description'
+                          style={{ minHeight: 64, width: "100%", marginBottom: "10px" }}
+                          onChange={setDescription}
+                          value={description}
+                />
+                <InputTag
+                    allowClear
+                    placeholder='Enter The Tags'
+                    style={{ width: "100%"}}
+                    onChange={setTags}
+                    value={tags}
+                />
+                <div className={"gpt-img-con"}>
+                    {
+                        loading
+                            ? <Spin/>
+                            :  <img className={"gpt-img"}  alt="gpt logo" src="src/assets/ChatGPT_logo.svg.png" onClick={useGPTFill} />
+                    }
+
+                </div>
+
+            </Modal>
+
     )
 }

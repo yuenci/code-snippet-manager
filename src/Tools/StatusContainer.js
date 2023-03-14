@@ -13,4 +13,5 @@ export default  class StatusContainer {
     static rowDataCache = [];
 
     static idRowUrlMap = {};
+
 }

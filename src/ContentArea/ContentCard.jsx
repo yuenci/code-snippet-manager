@@ -85,8 +85,12 @@ export  default  function ContentCard(props){
         });
     }
 
+    function doubleClickHandler(){
+        console.log(gist);
+    }
+
     return (
-        <div className={cardStyle} onClick={clickHandler}>
+        <div className={cardStyle} onClick={clickHandler} onDoubleClick={doubleClickHandler}>
             <Dropdown
                 trigger='contextMenu'
                 position='bl'

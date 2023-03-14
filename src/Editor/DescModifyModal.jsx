@@ -19,6 +19,7 @@ export default function DescModifyModal(props){
             onCancel={() => setVisible(false)}
             autoFocus={false}
             focusLock={true}
+            closable={false}
         >
             <TextArea placeholder='Please enter ...' value={text} className="desc-textarea" onChange={onChangeHandler}/>
         </Modal>

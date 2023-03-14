@@ -11,6 +11,7 @@ export default function SettingsModal(props){
             onCancel={() => setVisible(false)}
             autoFocus={false}
             focusLock={true}
+            closable={false}
         >
             <h1>hello</h1>
         </Modal>

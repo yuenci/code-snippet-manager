@@ -7,10 +7,7 @@ import 'prismjs/themes/prism.css'; //Example style, you can use another
 import  './MiniEditor.css' ;
 
 export  default  function MiniEditor(props) {
-    const {setContent} = props;
-    const [code, setCode] = React.useState(
-        `if (sad() === true) {\n    sad().stop();\n    beAwesome();\n}`
-    );
+    const {code, setCode} = props;
     const style = {
         backgroundColor : "#f2f3f5",
         overflow: "auto",
@@ -19,7 +16,7 @@ export  default  function MiniEditor(props) {
 
     function onChangeHandler(e){
         //console.log(e.target.value)
-        setContent(e.target.value);
+        setCode(e.target.value);
     }
 
 

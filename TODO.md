@@ -12,7 +12,7 @@
 - [ ] TimeZone Support
 - [X] show starred gist in editor
 - [X] star gist and unstar gist
-- [ ] write tags and description
+- [x] write tags and description
 - [X] read tags and description
 - [X] show tags
 - [X] show tags list
@@ -21,3 +21,4 @@
 - [ ] share gist(url + image)S
 - [ ] copy gist to clipboard
 - [ ] fix fist item can't be starred
+- [ ] show description modify modal

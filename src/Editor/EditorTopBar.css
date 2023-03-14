@@ -49,3 +49,12 @@
 .tags-container{
     margin: 10px 0;
 }
+
+.input-bgc-white{
+    background-color: transparent !important;
+    padding-left: 1px !important;
+}
+
+.desc-textarea{
+    height: 200px !important;
+}

@@ -7,14 +7,18 @@ import HistoryDrawer from "./HistoryDrawer.jsx";
 import StatusContainer from "../Tools/StatusContainer.js";
 import TagsContainer from "./TagsContainer.jsx";
 import PubSub from "pubsub-js";
+import {Input} from "@arco-design/web-react";
+import DescModifyModal from "./DescModifyModal.jsx";
 
 export  default  function  EditorTopBar ( props)  {
     const {gist_id} = props;
     const [gist, setGist] = useState(null);
     const [visible, setVisible] = useState(false);
+    const [visible1, setVisible1] = useState(false);
     const [starred, setStarred] = useState(false);
     const [showDrawer, setShowDrawer] = useState(false);
     const [isSyncing, setIsSyncing] = useState(false);
+    const [descValue , setDescValue] = useState(Tools.getDesc(gist));
 
     function star(){
         if(StatusContainer.starredGists.find((item) => item.id === gist_id)){
@@ -39,11 +43,11 @@ export  default  function  EditorTopBar ( props)  {
     }  , [gist_id]);
 
     useEffect(() => {
-        const subscription = PubSub.subscribe('syncing', (msg, data) => {
+        const subscription = PubSub.subscribe('syncing', () => {
             setIsSyncing(true)
             randomStopSync();
         });
-        const subscription1 = PubSub.subscribe('synced', (msg, data) => {
+        const subscription1 = PubSub.subscribe('synced', () => {
             setIsSyncing(false)
         });
         return () => {
@@ -72,14 +76,26 @@ export  default  function  EditorTopBar ( props)  {
         }
     }
 
+    function showDescModifyModal(){
+        setVisible1(true);
+    }
+
+    function descOnChange(value){
+        setDescValue(value);
+    }
+
     let tags = Tools.getTags(gist);
     let desc = Tools.getDesc(gist);
+
 
     return (
         <div>
             <div className="editor-top-bar">
                 <div className="editor-top-title">
-                    {gist ? gist.title: "Title"}
+                    {gist &&
+                        <Input  value={gist.title} className="input-bgc-white" />
+                    }
+                    {/*{gist ? gist.title: "Title"}*/}
                     <div className="editor-top-title-right">
                         <IconSync spin={isSyncing} className={"sync-icon"}/>
                         {starred
@@ -91,7 +107,11 @@ export  default  function  EditorTopBar ( props)  {
                     </div>
 
                 </div>
-                <div className="editor-top-desc">{desc}</div>
+                <div className="editor-top-desc">
+                    {gist &&
+                        <Input  value={desc} className="input-bgc-white" onClick={showDescModifyModal} onChange={descOnChange} />
+                    }
+                </div>
                 <div className="tags-container">
                     <TagsContainer tags={tags}/>
                 </div>
@@ -103,6 +123,7 @@ export  default  function  EditorTopBar ( props)  {
                 gist ? <InfoModal visible={visible} setVisible={setVisible} gist={gist}/> : null
             }
             <HistoryDrawer showDrawer={showDrawer} setShowDrawer={setShowDrawer} gist={gist}/>
+            <DescModifyModal visible={visible1} setVisible={setVisible1} value={desc} modify={setDescValue}/>
         </div>
 
 

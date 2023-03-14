@@ -90,7 +90,7 @@ export  default  class Tools{
         let date = new Date(isoString);
         let utcOffset = date.getTimezoneOffset() * 60000; // 将分钟转换为毫秒
         let utcTime = date.getTime() + utcOffset;
-        let utc8Time = new Date(utcTime + (3600000 * 8)); // 东八时区的偏移量为8个小时，将毫秒转换为小时
+        let utc8Time = new Date(utcTime + (3600000 * this.timeZoneOffsetInHours())); // 东八时区的偏移量为8个小时，将毫秒转换为小时
         let year = utc8Time.getFullYear();
         let month = this.padZero(utc8Time.getMonth() + 1); // 月份从0开始，需要加1
         let day = this.padZero(utc8Time.getDate());
@@ -230,5 +230,11 @@ export  default  class Tools{
                     reject(error);
                 });
         });
+    }
+
+    static timeZoneOffsetInHours() {
+        const offsetInMinutes = new Date().getTimezoneOffset();
+        //console.log(offsetInMinutes);
+        return Math.abs(offsetInMinutes) / 60;
     }
 }

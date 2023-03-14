@@ -2,7 +2,7 @@ import {useEffect, useState} from "react";
 import "./EditorTopBar.css";
 import Tools from "../Tools/Tools.js";
 import {IconHistory, IconInfoCircle, IconStar, IconStarFill, IconSync} from "@arco-design/web-react/icon";
-import InfoModal from "../Sidebar/InfoModal.jsx";
+import InfoModal from "./InfoModal.jsx";
 import HistoryDrawer from "./HistoryDrawer.jsx";
 import StatusContainer from "../Tools/StatusContainer.js";
 import TagsContainer from "./TagsContainer.jsx";

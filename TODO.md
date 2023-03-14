@@ -22,3 +22,5 @@
 - [ ] copy gist to clipboard
 - [ ] fix fist item can't be starred
 - [ ] show description modify modal
+- [ ] add run snippt 
+- [ ] move submit textarea to top

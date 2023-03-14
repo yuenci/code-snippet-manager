@@ -12,7 +12,7 @@ export  default  function  ContentTopArea ( )  {
 
     return (
         <div className="content_top_area_con">
-            <InputSearch placeholder='Enter keyword to search' className="search-bar"
+            <InputSearch placeholder='Enter keyword to search' className="search-bar" allowClear={true}
                          onSearch={onSearchHandler} onChange={onSearchHandler}/>
             <Button type='primary' icon={<IconSort />} />
         </div>

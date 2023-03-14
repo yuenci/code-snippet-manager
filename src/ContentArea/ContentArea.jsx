@@ -8,19 +8,22 @@ import PubSub from "pubsub-js";
 export default function ContentArea() {
     const [clearGistsData, setClearGistsData] = useState([]);
     const [active, setActive] = useState(false);
+    const [filterData, setFilterData] = useState([]);
 
     function updateContentsData() {
+        // read new gist data  load first gist data
         Tools.getClearingData().then(data=>{
             setClearGistsData(data);
+            setFilterData(data);
             setActive(data[0].id);
             PubSub.publish('updateEditorData', { gist_id: data[0].id });
         })
     }
 
-    function searchRawData(keyword){
+    /*function searchRawData(keyword){
         //console.log(StatusContainer.idRowUrlMap);
 
-        /*Tools.initRawDataCache().then(data=>{
+        /!*Tools.initRawDataCache().then(data=>{
             data.map((item) => {
                 // if keyword in data then return
                 if (item.indexOf(keyword) > -1){
@@ -28,32 +31,31 @@ export default function ContentArea() {
                     return item;
                 }
             })
-        })*/
-    }
+        })*!/
+    }*/
 
     useEffect(() => {
         const subscription = PubSub.subscribe('filterData', (msg, data) => {
-            const keywork = data.message;
-            //console.log(keywork)
-            //console.log(clearGistsData);
-            let filterData = clearGistsData.filter((item) => {
-                if (item.description.indexOf(keywork) > -1) {
+            const keyword = data.message;
+            if (keyword === "")  setFilterData(clearGistsData);
+
+            let newFilterData = clearGistsData.filter((item) => {
+                if (item.description.indexOf(keyword) > -1) {
                     return item;
-                }else if (item.title.indexOf(keywork) > -1) {
+                }else if (item.title.indexOf(keyword) > -1) {
                     return item;}
-                else if (item.files[0].filename.indexOf(keywork) > -1) {
+                else if (item.files[0].filename.indexOf(keyword) > -1) {
                     return item;
                 }
             });
-            searchRawData(keywork);
-            setClearGistsData(filterData);
+            setFilterData(newFilterData);
         });
         return () => PubSub.unsubscribe(subscription);
     }   , []);
 
+    // subscribe update all data and show it in editor area
     useEffect(() => {
         updateContentsData();
-
         const subscription = PubSub.subscribe('updateContentsData', () => {
             updateContentsData();
         });
@@ -64,8 +66,8 @@ export default function ContentArea() {
         <div className="content__area" >
             <ContentTopArea/>
             <div className="content-cards-container">
-                { clearGistsData.length > 0 &&
-                    clearGistsData.map((gist,index) => {
+                { clearGistsData.length > 0 && filterData.length > 0 &&
+                    filterData.map((gist,index) => {
                         return <ContentCard
                             key={index}
                             gist={gist}

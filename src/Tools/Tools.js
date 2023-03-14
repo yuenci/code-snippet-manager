@@ -302,4 +302,9 @@ export  default  class Tools{
                 });
         })
     }
+
+    static  romoveTagsFromDesc(desc){
+       return  desc.replace(/\[(.*?)]$/, '');
+
+    }
 }

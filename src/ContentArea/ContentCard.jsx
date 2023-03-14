@@ -100,9 +100,9 @@ export  default  function ContentCard(props){
                     {gist.title}
                 </div>
                 <div className="content-card-description">
-                    {gist.description}
+                    {Tools.romoveTagsFromDesc(gist.description)}
                 </div>
-                <div className="content-card-description">
+                <div className="content-card-time">
                     {Tools.ISO8601ToDDMMYYYY(gist.updated_at)}
                 </div>
             </Dropdown>

@@ -32,4 +32,5 @@
 - [ ] use gist to store settings(write a function to create,update settings)
 - [ ] use gist to style(so that every can share their style)
 - [ ] add copy to code editor mimi ![img.png](image/img.png)
-- [ ] tag editor
+- [ ] tag editor(add,delete,update)
+- [ ] update gist desc

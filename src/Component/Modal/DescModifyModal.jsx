@@ -21,7 +21,7 @@ export default function DescModifyModal(props){
             focusLock={true}
             closable={false}
         >
-            <TextArea placeholder='Please enter ...' value={text} className="desc-textarea" onChange={onChangeHandler}/>
+            <TextArea placeholder='Please enter ...' value={value} className="desc-textarea" onChange={onChangeHandler}/>
         </Modal>
     )
 }

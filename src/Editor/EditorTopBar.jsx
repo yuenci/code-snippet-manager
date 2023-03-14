@@ -12,13 +12,18 @@ import DescModifyModal from "../Component/Modal/DescModifyModal.jsx";
 
 export  default  function  EditorTopBar ( props)  {
     const {gist_id} = props;
+
+    // let tags = Tools.getTags(gist);
+    // let desc = Tools.getDesc(gist);
+
     const [gist, setGist] = useState(null);
     const [visible, setVisible] = useState(false);
     const [visible1, setVisible1] = useState(false);
     const [starred, setStarred] = useState(false);
     const [showDrawer, setShowDrawer] = useState(false);
     const [isSyncing, setIsSyncing] = useState(false);
-    const [descValue , setDescValue] = useState(Tools.getDesc(gist));
+    const [descValue , setDescValue] = useState("");
+    const [tagsValue , setTagsValue] = useState([]);
 
     function star(){
         if(StatusContainer.starredGists.find((item) => item.id === gist_id)){
@@ -43,6 +48,11 @@ export  default  function  EditorTopBar ( props)  {
     }  , [gist_id]);
 
     useEffect(() => {
+        setDescValue(Tools.getDesc(gist));
+        setTagsValue(Tools.getTags(gist));
+    }, [gist]);
+
+    useEffect(() => {
         const subscription = PubSub.subscribe('syncing', () => {
             setIsSyncing(true)
             randomStopSync();
@@ -50,6 +60,7 @@ export  default  function  EditorTopBar ( props)  {
         const subscription1 = PubSub.subscribe('synced', () => {
             setIsSyncing(false)
         });
+
         return () => {
             PubSub.unsubscribe(subscription)
             PubSub.unsubscribe(subscription1)
@@ -84,8 +95,7 @@ export  default  function  EditorTopBar ( props)  {
         setDescValue(value);
     }
 
-    let tags = Tools.getTags(gist);
-    let desc = Tools.getDesc(gist);
+
 
 
     return (
@@ -109,11 +119,11 @@ export  default  function  EditorTopBar ( props)  {
                 </div>
                 <div className="editor-top-desc">
                     {gist &&
-                        <Input  value={desc} className="input-bgc-white" onClick={showDescModifyModal} onChange={descOnChange} />
+                        <Input  value={descValue} className="input-bgc-white" onClick={showDescModifyModal} onChange={descOnChange} />
                     }
                 </div>
                 <div className="tags-container">
-                    <TagsContainer tags={tags}/>
+                    <TagsContainer tags={tagsValue}/>
                 </div>
                 <div>
                     {gist ? "Last updated at " + Tools.ISO8601ToDateTime(gist.updated_at) : "Tags"}
@@ -123,7 +133,7 @@ export  default  function  EditorTopBar ( props)  {
                 gist ? <InfoModal visible={visible} setVisible={setVisible} gist={gist}/> : null
             }
             <HistoryDrawer showDrawer={showDrawer} setShowDrawer={setShowDrawer} gist={gist}/>
-            <DescModifyModal visible={visible1} setVisible={setVisible1} value={desc} modify={setDescValue}/>
+            <DescModifyModal visible={visible1} setVisible={setVisible1} value={descValue} modify={setDescValue}/>
         </div>
 
 

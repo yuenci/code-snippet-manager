@@ -2,13 +2,13 @@ import {useEffect, useState} from "react";
 import "./EditorTopBar.css";
 import Tools from "../Tools/Tools.js";
 import {IconHistory, IconInfoCircle, IconStar, IconStarFill, IconSync} from "@arco-design/web-react/icon";
-import InfoModal from "./InfoModal.jsx";
+import InfoModal from "../Component/Modal/InfoModal.jsx";
 import HistoryDrawer from "./HistoryDrawer.jsx";
 import StatusContainer from "../Tools/StatusContainer.js";
 import TagsContainer from "./TagsContainer.jsx";
 import PubSub from "pubsub-js";
 import {Input} from "@arco-design/web-react";
-import DescModifyModal from "./DescModifyModal.jsx";
+import DescModifyModal from "../Component/Modal/DescModifyModal.jsx";
 
 export  default  function  EditorTopBar ( props)  {
     const {gist_id} = props;

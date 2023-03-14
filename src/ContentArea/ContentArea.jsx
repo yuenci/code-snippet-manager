@@ -1,5 +1,5 @@
 import {useEffect, useState} from "react";
-import ContentCard from "./ContentCard.jsx";
+import ContentCard from "../Component/Card/ContentCard.jsx";
 import Tools from "../Tools/Tools.js";
 import "./ContentArea.css";
 import ContentTopArea from "./ContentTopArea.jsx";
@@ -20,7 +20,7 @@ export default function ContentArea() {
     function searchRawData(keyword){
         //console.log(StatusContainer.idRowUrlMap);
 
-        Tools.initRawDataCache().then(data=>{
+        /*Tools.initRawDataCache().then(data=>{
             data.map((item) => {
                 // if keyword in data then return
                 if (item.indexOf(keyword) > -1){
@@ -28,7 +28,7 @@ export default function ContentArea() {
                     return item;
                 }
             })
-        })
+        })*/
     }
 
     useEffect(() => {

@@ -1,7 +1,7 @@
 import {Input, InputTag, Modal, Notification, Spin} from "@arco-design/web-react";
-import MiniEditor from "../Editor/MiniEditor.jsx";
+import MiniEditor from "../../Editor/MiniEditor.jsx";
 import {useState} from "react";
-import Tools from "../Tools/Tools.js";
+import Tools from "../../Tools/Tools.js";
 import PubSub from "pubsub-js";
 
 export default  function SubmitModal (props){
@@ -115,7 +115,7 @@ export default  function SubmitModal (props){
                     {
                         loading
                             ? <Spin/>
-                            :  <img className={"gpt-img"}  alt="gpt logo" src="src/assets/ChatGPT_logo.svg.png" onClick={useGPTFill} />
+                            :  <img className={"gpt-img"} alt="gpt logo" src="src/assets/ChatGPT_logo.svg.png" onClick={useGPTFill} />
                     }
 
                 </div>

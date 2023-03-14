@@ -1,6 +1,6 @@
 import {Modal} from "@arco-design/web-react";
-import "../Sidebar/Sidebar.css"
-import Tools from "../Tools/Tools.js";
+import "../../Sidebar/Sidebar.css"
+import Tools from "../../Tools/Tools.js";
 export default  function InfoModal(props){
     const {visible, setVisible,gist} = props;
     //console.log(gist)

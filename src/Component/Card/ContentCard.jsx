@@ -1,9 +1,10 @@
-import "./ContentArea.css";
-import Tools from "../Tools/Tools.js";
+import "../../ContentArea/ContentArea.css";
+import Tools from "../../Tools/Tools.js";
 import PubSub from 'pubsub-js';
-import {Dropdown, Menu, Notification} from "@arco-design/web-react";
+import {Dropdown, Menu} from "@arco-design/web-react";
 import {useEffect, useState,} from "react";
-import StatusContainer from "../Tools/StatusContainer.js";
+import StatusContainer from "../../Tools/StatusContainer.js";
+import UITools from "../../Tools/UITools.js";
 
 export  default  function ContentCard(props){
     const {gist,active, setActive} = props;
@@ -32,17 +33,16 @@ export  default  function ContentCard(props){
         let  link = gist.html_url;
         // copy link to clipboard
         navigator.clipboard.writeText(link).then(function() {
-            console.log('Async: Copying to clipboard was successful!');
+            //console.log('Async: Copying to clipboard was successful!');
+            UITools.Notify("success", "Link copied to clipboard!" );
         });
-        Notification.success({
-            title: 'Success',
-            content: 'Link copied to clipboard!',
-        })
+
     }
 
     function  deleteGist(){
         Tools.deleteGist(gist.id).then(data=>{
             PubSub.publish('updateContentsData', { message: data });
+            UITools.Notify("success", "Gist deleted!" );
         })
     }
 

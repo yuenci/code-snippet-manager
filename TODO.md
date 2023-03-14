@@ -5,7 +5,7 @@
 - [x] Add Update Gist Method
 - [x] Add Star Gist Method, pinned is starred
 - [x] Add Unstar Gist Method
-- [ ] How to deal with the tags?
+- [x] How to deal with the tags?
 - [ ] Add Gist Search Method
 - [X] Snippet Info Modal
 - [ ] Use Gpt3 to generate Title / Filename / Description

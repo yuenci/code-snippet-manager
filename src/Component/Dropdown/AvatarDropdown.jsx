@@ -1,8 +1,8 @@
 import {Avatar, Button, Dropdown, Menu} from "@arco-design/web-react";
-import Tools from "../Tools/Tools.js";
+import Tools from "../../Tools/Tools.js";
 import {IconDown} from "@arco-design/web-react/icon";
 import {useEffect, useState} from "react";
-import SettingsModal from "./SettingsModal.jsx";
+import SettingsModal from "../Modal/SettingsModal.jsx";
 import PubSub from "pubsub-js";
 
 export  default  function AvatarDropdown(){

@@ -3,7 +3,7 @@ import { IconPlus, IconSync} from "@arco-design/web-react/icon";
 
 import "./Sidebar.css";
 import PubSub from "pubsub-js";
-import AvatarDropdown from "./AvatarDropdown.jsx";
+import AvatarDropdown from "../Component/Dropdown/AvatarDropdown.jsx";
 
 export default function SidebarTopArea(props) {
     const {showModal} = props;

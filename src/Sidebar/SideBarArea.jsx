@@ -1,11 +1,11 @@
 import {IconCaretDown, IconCaretRight} from "@arco-design/web-react/icon";
-import TagCard from "./TagCard.jsx";
+import TagCard from "../Component/Card/TagCard.jsx";
 import {useState} from "react";
 
 export default function SidebarArea(props) {
     const {title, icon, data,onExpand,type} = props;
     const [show, setShow] = useState(false);
-    const [itemData , setItemData] = useState(data);
+    const [itemData ] = useState(data);
 
     function  showHandler(){
         if(!show) onExpand();

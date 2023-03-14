@@ -3,13 +3,11 @@ import LanguagesArea from "./LanguagesArea";
 import Starred from "./Starred.jsx";
 import TagsArea from "./TagsArea";
 import { useState } from "react";
-import {Input} from "@arco-design/web-react";
 import SidebarTopArea from "./SidebarTopArea.jsx";
-import SubmitModal from "./SubmitModal.jsx";
+import SubmitModal from "../Component/Modal/SubmitModal.jsx";
 
 export default function Sidebar() {
     const [visible, setVisible] = useState(false);
-    const TextArea = Input.TextArea;
 
 
     function showModal() {

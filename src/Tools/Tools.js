@@ -243,7 +243,7 @@ export  default  class Tools{
     }
 
     static initRawDataCache(){
-        let promiseMap = new Map();
+        //let promiseMap = new Map();
         StatusContainer.ClearAllGistsData.map(gist => {
             let raw_url = gist.files[0].raw_url;
             let promise = this.getRawContent(raw_url);
@@ -305,6 +305,5 @@ export  default  class Tools{
 
     static  romoveTagsFromDesc(desc){
        return  desc.replace(/\[(.*?)]$/, '');
-
     }
 }

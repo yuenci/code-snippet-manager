@@ -1,7 +1,7 @@
-import Tools from "../Tools/Tools.js";
+import Tools from "../../Tools/Tools.js";
 import "./HistoryCard.css";
 import {IconHistory} from "@arco-design/web-react/icon";
-import StatusContainer from "../Tools/StatusContainer.js";
+import StatusContainer from "../../Tools/StatusContainer.js";
 
 export  default  function HistoryCard(props){
     const {history,setShowDrawer} = props;

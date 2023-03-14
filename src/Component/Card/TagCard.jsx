@@ -1,6 +1,6 @@
-import "./Sidebar.css";
+import "../../Sidebar/Sidebar.css";
 import PubSub from "pubsub-js";
-import StatusContainer from "../Tools/StatusContainer.js";
+import StatusContainer from "../../Tools/StatusContainer.js";
 export  default  function  TagCard(props) {
     const  {text,type,data} = props;
 

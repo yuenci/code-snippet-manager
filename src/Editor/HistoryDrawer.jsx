@@ -1,6 +1,6 @@
 import {Drawer} from "@arco-design/web-react";
 import {useEffect, useState} from "react";
-import HistoryCard from "./HistoryCard.jsx";
+import HistoryCard from "../Component/Card/HistoryCard.jsx";
 
 export  default  function HistoryDrawer(props) {
     const {showDrawer, setShowDrawer} = props;

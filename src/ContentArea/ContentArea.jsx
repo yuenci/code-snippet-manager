@@ -18,9 +18,27 @@ export default function ContentArea() {
     }
 
     useEffect(() => {
+        const subscription = PubSub.subscribe('filterData', (msg, data) => {
+            const keywork = data.message;
+            //console.log(clearGistsData);
+            let filterData = clearGistsData.filter((item) => {
+                if (item.description.indexOf(keywork) > -1) {
+                    return item;
+                }else if (item.title.indexOf(keywork) > -1) {
+                    return item;}
+                else if (item.files[0].filename.indexOf(keywork) > -1) {
+                    return item;
+                }
+            });
+            setClearGistsData(filterData);
+        });
+        return () => PubSub.unsubscribe(subscription);
+    }   , []);
+
+    useEffect(() => {
         updateContentsData();
 
-        const subscription = PubSub.subscribe('updateContentsData', (msg, data) => {
+        const subscription = PubSub.subscribe('updateContentsData', () => {
             updateContentsData();
         });
         return () => PubSub.unsubscribe(subscription);

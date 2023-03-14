@@ -9,4 +9,8 @@ export default  class StatusContainer {
     static owner = null;
 
     static starredGists = [];
+
+    static rowDataCache = [];
+
+    static idRowUrlMap = {};
 }

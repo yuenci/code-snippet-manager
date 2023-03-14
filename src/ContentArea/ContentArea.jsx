@@ -17,9 +17,24 @@ export default function ContentArea() {
         })
     }
 
+    function searchRawData(keyword){
+        //console.log(StatusContainer.idRowUrlMap);
+
+        Tools.initRawDataCache().then(data=>{
+            data.map((item) => {
+                // if keyword in data then return
+                if (item.indexOf(keyword) > -1){
+                    console.log(item)
+                    return item;
+                }
+            })
+        })
+    }
+
     useEffect(() => {
         const subscription = PubSub.subscribe('filterData', (msg, data) => {
             const keywork = data.message;
+            //console.log(keywork)
             //console.log(clearGistsData);
             let filterData = clearGistsData.filter((item) => {
                 if (item.description.indexOf(keywork) > -1) {
@@ -30,6 +45,7 @@ export default function ContentArea() {
                     return item;
                 }
             });
+            searchRawData(keywork);
             setClearGistsData(filterData);
         });
         return () => PubSub.unsubscribe(subscription);

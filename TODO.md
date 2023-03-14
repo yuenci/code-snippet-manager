@@ -22,5 +22,8 @@
 - [ ] copy gist to clipboard
 - [ ] fix fist item can't be starred
 - [ ] show description modify modal
-- [ ] add run snippt 
-- [ ] move submit textarea to top
+- [ ] add run snippet 
+- [X] move submit textarea to top
+- [X] search desc and filename
+- [ ] search data content(put into settings)
+- [ ] connect to gpt

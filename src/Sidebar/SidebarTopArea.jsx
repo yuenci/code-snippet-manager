@@ -4,11 +4,13 @@ import Tools from "../Tools/Tools.js";
 import "./Sidebar.css";
 import {useEffect, useState} from "react";
 import PubSub from "pubsub-js";
+import SettingsModal from "./SettingsModal.jsx";
 
 export default function SidebarTopArea(props) {
     const {showModal} = props;
     const [login, setLogin] = useState("");
     const [avatar_url, setAvatar_url] = useState("");
+    const[showSettingsModal, setShowSettingsModal] = useState(false);
 
     useEffect(() => {
         const subscription = PubSub.subscribe('nameAndAvatar', (msg, data) => {
@@ -19,12 +21,24 @@ export default function SidebarTopArea(props) {
     }, []);
 
     const dropList = (
-        <Menu>
+        <Menu onClickMenuItem={onClickMenuItem}>
             <Menu.Item key='1'>Settings</Menu.Item>
             <Menu.Item key='2'>Help</Menu.Item>
             <Menu.Item key='3'>Log out</Menu.Item>
         </Menu>
     );
+
+    function  onClickMenuItem(key) {
+        if (key === '1') {
+            setShowSettingsModal(true);
+        } else if (key === '2') {
+            console.log("Help");
+        } else if (key === '3') {
+            console.log("Log out");
+        }
+    }
+
+
 
     function showNotification() {
         PubSub.publish('updateContentsData', { message: 'updateEditorData' });
@@ -66,6 +80,7 @@ export default function SidebarTopArea(props) {
                 <Button shape='circle' type='primary' icon={<IconSync />}/>
                 <span>Sync Snippets</span>
             </div>
+            <SettingsModal visible={showSettingsModal} setVisible={setShowSettingsModal}/>
         </div>
     )
 }

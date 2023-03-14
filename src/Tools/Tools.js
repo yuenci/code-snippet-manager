@@ -21,6 +21,7 @@ export  default  class Tools{
 
     static  clearingAndSortingData(data){
         let clearData = [];
+        let idRowUrlMap = {};
         for (let i = 0; i < data.length; i++) {
             let gist = data[i];
             let files = [];
@@ -44,7 +45,9 @@ export  default  class Tools{
                 html_url: gist.html_url,
                 owner: gist.owner
             })
+            idRowUrlMap[gist.id] = gist.files[Object.keys(gist.files)[0]].raw_url;
         }
+        StatusContainer.idRowUrlMap = idRowUrlMap;
         // sort by updated_at , return a new array
         return clearData.sort((a, b) => {
             return new Date(b.updated_at) - new Date(a.updated_at);
@@ -236,5 +239,33 @@ export  default  class Tools{
         const offsetInMinutes = new Date().getTimezoneOffset();
         //console.log(offsetInMinutes);
         return Math.abs(offsetInMinutes) / 60;
+    }
+
+    static initRawDataCache(){
+        let promiseMap = new Map();
+        StatusContainer.ClearAllGistsData.map(gist => {
+            let raw_url = gist.files[0].raw_url;
+            let promise = this.getRawContent(raw_url);
+            promiseList.push(promise);
+        });
+        // return promise res , raw_url map
+
+
+
+
+        //return Promise.all(promiseList);
+    }
+
+    static deleteGist(gist_id){
+        return new Promise((resolve, reject) => {
+            Gist.delete({ type: Gist.type.deleteGist, gist_id: gist_id }).then(
+                data => {
+                    resolve(data);
+                }
+            ).catch(error => {
+                console.error(error);
+                reject(error);
+            });
+        });
     }
 }

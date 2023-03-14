@@ -1,7 +1,7 @@
 import "./ContentArea.css";
 import Tools from "../Tools/Tools.js";
 import PubSub from 'pubsub-js';
-import {Dropdown, Menu} from "@arco-design/web-react";
+import {Dropdown, Menu, Notification} from "@arco-design/web-react";
 import {useEffect, useState,} from "react";
 import StatusContainer from "../Tools/StatusContainer.js";
 
@@ -11,7 +11,39 @@ export  default  function ContentCard(props){
     //const [history, setHistory] = useState([]);
 
     function onClickMenuItem(key) {
-        console.log(key);
+        if (key === '1') {
+            console.log("Share snippet");
+        }   else if (key === '2') {
+            console.log("Star snippet");
+        }   else if (key === '3') {
+            console.log("Copy snippet");
+        }   else if (key === '4') {
+            copyLinkHandler();
+        }   else if (key === '5') {
+            deleteGist();
+        }   else if (key === '6') {
+            console.log("Generate image");
+        }   else if (key === '7') {
+            console.log("Export code");
+        }
+    }
+
+    function copyLinkHandler(){
+        let  link = gist.html_url;
+        // copy link to clipboard
+        navigator.clipboard.writeText(link).then(function() {
+            console.log('Async: Copying to clipboard was successful!');
+        });
+        Notification.success({
+            title: 'Success',
+            content: 'Link copied to clipboard!',
+        })
+    }
+
+    function  deleteGist(){
+        Tools.deleteGist(gist.id).then(data=>{
+            PubSub.publish('updateContentsData', { message: data });
+        })
     }
 
     const  dropList   =  (

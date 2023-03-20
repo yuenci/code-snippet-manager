@@ -71,7 +71,50 @@ https://securingsincity.github.io/react-ace/
 yarn add react-ace ace-builds
 ```
 
+doc - ace: https://github.com/securingsincity/react-ace/blob/master/docs/Ace.md
+
+doc - diff : https://github.com/securingsincity/react-ace/blob/master/docs/Diff.md
+
+
+
+https://github.com/thlorenz/brace
+
+https://stackoverflow.com/questions/55545300/with-react-ace-i-would-like-add-mode-php-which-is-currently-not-supported
+
+brace mode support https://github.com/thlorenz/brace/tree/master/mode
+```bash
+yarn add brace
+```
+
+```js
+import React from 'react'
+import AceEditor from 'react-ace'
+
+import 'brace/mode/php'
+import 'brace/snippets/php';
+import 'brace/theme/tomorrow'
+
+const MyEditor = () => {
+ return (
+   <AceEditor
+     name="my-editor"
+     mode="php"
+     theme="tomorrow"
+     value=""
+     width="100%"
+     height="500px" />
+ )
+}
+
+export default MyEditor
+```
+
+
+
+
+
 # PubSubJS
+
 ```bash
 yarn add pubsub-js
 ```
@@ -80,4 +123,9 @@ yarn add pubsub-js
 https://github.com/kpdecker/jsdiff
 ```bash
 yarn add diff
+```
+
+```bash
+net stop winnat
+net start winnat
 ```

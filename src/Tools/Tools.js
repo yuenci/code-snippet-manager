@@ -307,3 +307,4 @@ export  default  class Tools{
        return  desc.replace(/\[(.*?)]$/, '');
     }
 }
+

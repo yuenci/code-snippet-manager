@@ -18,7 +18,7 @@
 - [X] show tags list
 - [ ] tags click to search
 - [ ] language click to search
-- [ ] share gist(url + image)S
+- [ ] share gist(url + image)
 - [X] copy gist to clipboard
 - [ ] fix fist item can't be starred
 - [ ] show description modify modal
@@ -34,3 +34,6 @@
 - [ ] add copy to code editor mimi ![img.png](image/img.png)
 - [ ] tag editor(add,delete,update)
 - [ ] update gist desc
+- [ ] multi language support
+- [ ]  add Qrcode to share
+- [ ]  use redux toolkit

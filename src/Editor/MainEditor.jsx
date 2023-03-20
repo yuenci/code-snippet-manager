@@ -1,7 +1,11 @@
 import AceEditor from "react-ace";
 import "ace-builds/src-noconflict/mode-java";
+import "ace-builds/src-noconflict/mode-javascript";
 import "ace-builds/src-noconflict/theme-github";
 import "ace-builds/src-noconflict/ext-language_tools";
+// import 'brace/mode/csharp';
+// import 'brace/mode/javascript';
+
 import {createRef, useEffect, useState} from "react";
 import PubSub from "pubsub-js";
 import StatusContainer from "../Tools/StatusContainer.js";
@@ -13,8 +17,8 @@ export  default  function MainEditor(props){
     if (!content) content = "";
 
     const [value, setValue] = useState(content);
-
     const  [height, setHeight] = useState(620);
+    const  [language, setLanguage] = useState("javascript");
 
     function handleResize() {
         //console.log("resize")
@@ -26,8 +30,6 @@ export  default  function MainEditor(props){
             //console.log(data.message)
             setValue(data.message)
             StatusContainer.currentCodeContent = data.message;
-
-
         });
         return () => {
             PubSub.unsubscribe(subscription);
@@ -63,6 +65,11 @@ export  default  function MainEditor(props){
     useEffect(() => {
         let currentGist = StatusContainer.ClearAllGistsData.find((item) => item.id === gist_id);
         if(currentGist === undefined) return;
+
+        let currentLanguage = currentGist.files[0].language;
+        if(!currentLanguage) currentLanguage = "javascript";
+        setLanguage(currentLanguage.toLowerCase());
+
         Tools.getRawContent(currentGist.files[0].raw_url).then(data => {
             //console.log(data)
             setValue(data)
@@ -82,7 +89,7 @@ export  default  function MainEditor(props){
             ref={editorRef}
             width="100%"
             height={height +"px"}
-            mode="javascript"
+            mode={language}
             theme="github"
             name="blah1"
             // onLoad={onLoad}
